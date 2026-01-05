@@ -45,10 +45,10 @@ export default function KontaktPage() {
               <p>
                 ✉️{" "}
                 <a
-                  href="mailto:kontakt@alfa-ckm.pl"
+                  href="mailto:kontakt@alfackm.pl"
                   className="text-brand-gold hover:underline"
                 >
-                  kontakt@alfa-ckm.pl
+                  kontakt@alfackm.pl
                 </a>
               </p>
             </div>

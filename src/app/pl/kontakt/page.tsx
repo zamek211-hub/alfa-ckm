@@ -1,6 +1,46 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
 export default function KontaktPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
+
+      setStatus("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (err) {
+      setStatus("error");
+    }
+  }
+
   return (
     <>
       {/* PAGE HEADER */}
@@ -69,36 +109,54 @@ export default function KontaktPage() {
               Napisz do nas
             </h2>
 
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 type="text"
                 placeholder="Imię i nazwisko"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
                 className="w-full bg-black border border-white/20 p-3 text-white"
               />
 
               <input
                 type="email"
                 placeholder="Adres e-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="w-full bg-black border border-white/20 p-3 text-white"
               />
 
               <textarea
                 rows={5}
                 placeholder="Twoja wiadomość"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
                 className="w-full bg-black border border-white/20 p-3 text-white"
               />
 
               <button
                 type="submit"
-                className="px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition"
+                disabled={status === "loading"}
+                className="px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition disabled:opacity-50"
               >
-                Wyślij wiadomość
+                {status === "loading" ? "Wysyłanie..." : "Wyślij wiadomość"}
               </button>
             </form>
 
-            <p className="text-white/50 text-sm mt-4">
-              Formularz jest w fazie informacyjnej.
-            </p>
+            {status === "success" && (
+              <p className="text-green-500 mt-4">
+                ✅ Wiadomość została wysłana. Dziękujemy!
+              </p>
+            )}
+
+            {status === "error" && (
+              <p className="text-red-500 mt-4">
+                ❌ Wystąpił błąd. Spróbuj ponownie później.
+              </p>
+            )}
           </div>
         </div>
       </section>

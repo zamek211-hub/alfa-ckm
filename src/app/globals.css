@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* ===== SYSTEM KOLORÓW ALFA ===== */
+@theme {
+  --color-brand-black: #0A0A0A;
+  --color-brand-red: #A31217;
+  --color-brand-gold: #E5C97B;
+  --color-brand-cream: #F3EED9;
+  --color-brand-muted: #9CA3AF;
+  --color-brand-border: #2A2A2A;
+}
+
+/* ===== RESET / BAZA ===== */
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--color-brand-black);
+  color: var(--color-brand-cream);
+  font-family: system-ui, Arial, Helvetica, sans-serif;
+}

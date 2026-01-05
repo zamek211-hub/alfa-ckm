@@ -1,0 +1,87 @@
+/*
+====================================================
+EVENTS DATA – FINAL
+– folder = slug eventu
+– images: /assets/images/{slug}/photo1.jpg ... photo20.jpg
+– videos: /assets/videos/{slug}/video1.mp4 ... video5.mp4
+====================================================
+*/
+
+export interface MediaItem {
+  type: "image" | "mp4";
+  src: string;      // DUŻE zdjęcie
+  thumb?: string;   // MINIATURKA
+}
+
+export type EventItem = {
+  slug: string;
+  title: string;
+  date: string;
+  cover: string;
+  media: MediaItem[];
+  visibility?: "public" | "members";
+  location?: string;
+  type?: string;
+};
+
+/*
+====================================================
+HELPERY
+====================================================
+*/
+
+// generuje zdjęcia photo1.jpg ... photoN.jpg
+const images = (slug: string, count: number): MediaItem[] =>
+  Array.from({ length: count }, (_, i) => ({
+    type: "image",
+    src: `/assets/images/${slug}/photo${i + 1}.jpg`,
+    thumb: `/assets/images/${slug}/thumbs/photo${i + 1}.jpg`,
+  }));
+
+// generuje video video1.mp4 ... videoN.mp4
+const videos = (slug: string, count: number): MediaItem[] =>
+  Array.from({ length: count }, (_, i) => ({
+    type: "mp4",
+    src: `/assets/videos/${slug}/video${i + 1}.mp4`,
+  }));
+
+/*
+====================================================
+EVENTS
+====================================================
+*/
+export const events: EventItem[] = [
+  {
+    slug: "bieszczady-2023",
+    title: "Wyprawa Bieszczady 2023",
+    date: "2023-06-20",
+	location: "Bieszczady",
+    cover: "/assets/images/bieszczady-2023/cover.jpg?v=1",
+    media: [
+      ...images("bieszczady-2023", 20),
+      ...videos("bieszczady-2023", 5),
+    ],
+  },
+
+  {
+    slug: "offroad-2024",
+    title: "Szkolenie Offroad 2024",
+    date: "2024-04-12",
+    cover: "/assets/images/offroad-2024/cover.jpg",
+    media: [
+      ...images("offroad-2024", 20),
+      ...videos("offroad-2024", 5),
+    ],
+  },
+
+  {
+    slug: "impreza-klubowa",
+    title: "Impreza Klubowa",
+    date: "2024-08-01",
+    cover: "/assets/images/impreza-klubowa/cover.jpg",
+    media: [
+      ...images("impreza-klubowa", 20),
+      ...videos("impreza-klubowa", 5),
+    ],
+  },
+];

@@ -1,0 +1,12 @@
+// src/locales/en.json
+{
+"home": {"title": "ALFA-MOT"},
+"oNas": {"title": "About Us"},
+"wartosci": {"title": "Values"},
+"statut": {"title": "Statute"},
+"media": {"title": "Media"},
+"members": {"title": "Members"},
+"partnerzy": {"title": "Partners"},
+"blog": {"title": "Blog"},
+"kontakt": {"title": "Contact"}
+}

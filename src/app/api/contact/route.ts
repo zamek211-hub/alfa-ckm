@@ -11,7 +11,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    // 🔹 Konfiguracja transportera Zoho
     const transporter = nodemailer.createTransport({
       host: "smtp.zoho.eu",
       port: 465,
@@ -22,24 +21,20 @@ export async function POST(req: Request) {
       },
     });
 
-    // 🔹 Treść e-maila
     await transporter.sendMail({
       from: `"ALFA-CKM" <${process.env.ZOHO_SMTP_USER}>`,
-      to: process.env.ZOHO_SMTP_USER, // wysyłamy do siebie (formularz kontaktowy)
-      subject: `Nowa wiadomość z formularza kontaktowego`,
-      text: `
-        Od: ${name}
-        E-mail: ${email}
-
-        Wiadomość:
-        ${message}
-      `,
+      to: process.env.ZOHO_SMTP_USER,
+      subject: "Nowa wiadomość z formularza kontaktowego",
+      text: `Od: ${name}\nE-mail: ${email}\n\n${message}`,
     });
 
     return NextResponse.json({ ok: true });
   } catch (error: any) {
-    console.error("Mail error:", error);
-    return NextResponse.json({ error: "Mail send failed", details: error.message }, { status: 500 });
+    console.error("MAIL ERROR:", error);
+    return NextResponse.json(
+      { error: "Mail send failed", details: error.message },
+      { status: 500 }
+    );
   }
 }
 

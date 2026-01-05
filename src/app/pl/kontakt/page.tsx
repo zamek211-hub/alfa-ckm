@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 
 export default function KontaktForm() {
@@ -9,20 +10,21 @@ export default function KontaktForm() {
     setStatus(null);
 
     const form = e.currentTarget;
+    const formData = new FormData(form);
 
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value,
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
       }),
     });
 
     if (res.ok) {
-      form.reset();
       setStatus("ok");
+      form.reset();
     } else {
       setStatus("error");
     }
@@ -32,19 +34,22 @@ export default function KontaktForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <input
         name="name"
+        required
         placeholder="Imię i nazwisko"
         className="w-full bg-black border border-white/20 p-3 text-white"
       />
 
       <input
-        name="email"
         type="email"
+        name="email"
+        required
         placeholder="Adres e-mail"
         className="w-full bg-black border border-white/20 p-3 text-white"
       />
 
       <textarea
         name="message"
+        required
         rows={5}
         placeholder="Twoja wiadomość"
         className="w-full bg-black border border-white/20 p-3 text-white"
@@ -58,10 +63,11 @@ export default function KontaktForm() {
       </button>
 
       {status === "ok" && (
-        <p className="text-green-500">✅ Wiadomość wysłana</p>
+        <p className="text-green-500">Wiadomość została wysłana ✅</p>
       )}
+
       {status === "error" && (
-        <p className="text-red-500">❌ Błąd wysyłki</p>
+        <p className="text-red-500">Błąd wysyłania ❌</p>
       )}
     </form>
   );

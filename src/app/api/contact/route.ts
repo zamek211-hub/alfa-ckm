@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
@@ -23,16 +23,22 @@ export async function POST(req: Request) {
     });
 
     await transporter.sendMail({
-      from: `"Formularz ALFA-CKM" <${process.env.ZOHO_SMTP_USER}>`,
+      from: `"Formularz kontaktowy" <${process.env.ZOHO_SMTP_USER}>`,
       to: "kontakt@alfackm.pl",
       replyTo: email,
-      subject: `Nowa wiadomość od ${name}`,
-      text: message,
+      subject: "Nowa wiadomość z formularza",
+      text: `
+Imię: ${name}
+Email: ${email}
+
+Wiadomość:
+${message}
+      `,
     });
 
     return NextResponse.json({ success: true });
   } catch (err) {
-    console.error(err);
+    console.error("MAIL ERROR:", err);
     return NextResponse.json(
       { error: "Server error" },
       { status: 500 }

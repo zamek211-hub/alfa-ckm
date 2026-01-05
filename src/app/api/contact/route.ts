@@ -5,10 +5,14 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, message } = await req.json();
+    const body = await req.json();
+    const { name, email, message } = body;
 
     if (!name || !email || !message) {
-      return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing fields" },
+        { status: 400 }
+      );
     }
 
     const transporter = nodemailer.createTransport({
@@ -24,15 +28,15 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"ALFA-CKM" <${process.env.ZOHO_SMTP_USER}>`,
       to: process.env.ZOHO_SMTP_USER,
-      subject: "Nowa wiadomość z formularza kontaktowego",
-      text: `Od: ${name}\nE-mail: ${email}\n\n${message}`,
+      subject: "Nowa wiadomość z formularza",
+      text: `Imię: ${name}\nEmail: ${email}\n\n${message}`,
     });
 
-    return NextResponse.json({ ok: true });
-  } catch (error: any) {
-    console.error("MAIL ERROR:", error);
+    return NextResponse.json({ ok: true, sent: true });
+  } catch (err: any) {
+    console.error("MAIL ERROR:", err);
     return NextResponse.json(
-      { error: "Mail send failed", details: error.message },
+      { error: "Mail failed", details: err.message },
       { status: 500 }
     );
   }

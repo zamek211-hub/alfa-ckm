@@ -37,48 +37,108 @@ export default function KontaktPage() {
 
   return (
     <>
-      {/* FORMULARZ */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          name="name"
-          type="text"
-          required
-          placeholder="Imię i nazwisko"
-          className="w-full bg-black border border-white/20 p-3 text-white"
-        />
+      {/* HEADER */}
+      <section className="bg-black border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4 py-20 text-center">
+          <h1 className="text-brand-gold text-4xl md:text-5xl font-bold tracking-wide">
+            KONTAKT
+          </h1>
+          <p className="mt-4 text-white/80 max-w-2xl mx-auto">
+            Masz pytania, chcesz dołączyć do klubu lub zostać partnerem?
+            Skontaktuj się z nami.
+          </p>
+        </div>
+      </section>
 
-        <input
-          name="email"
-          type="email"
-          required
-          placeholder="Adres e-mail"
-          className="w-full bg-black border border-white/20 p-3 text-white"
-        />
+      {/* CONTENT */}
+      <section className="max-w-6xl mx-auto px-4 py-20">
+        <div className="grid gap-16 md:grid-cols-2 items-start">
 
-        <textarea
-          name="message"
-          rows={5}
-          required
-          placeholder="Twoja wiadomość"
-          className="w-full bg-black border border-white/20 p-3 text-white"
-        />
+          {/* LEWA KOLUMNA */}
+          <div>
+            <h2 className="text-2xl md:text-3xl font-semibold text-brand-gold mb-6">
+              Dane kontaktowe
+            </h2>
 
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          className="px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition"
-        >
-          {status === "sending" ? "Wysyłanie..." : "Wyślij wiadomość"}
-        </button>
+            <div className="space-y-4 text-white/80">
+              <p className="text-white font-semibold">
+                Chrześcijański Klub Motocyklowy ALFA-CKM
+              </p>
 
-        {status === "success" && (
-          <p className="text-green-500 mt-2">✅ Wiadomość została wysłana.</p>
-        )}
+              <p>📍 Polska</p>
 
-        {status === "error" && (
-          <p className="text-red-500 mt-2">❌ Błąd wysyłki. Spróbuj ponownie.</p>
-        )}
-      </form>
+              <p>
+                ✉️{" "}
+                <a
+                  href="mailto:kontakt@alfackm.pl"
+                  className="text-brand-gold hover:underline"
+                >
+                  kontakt@alfackm.pl
+                </a>
+              </p>
+            </div>
+
+            <div className="mt-10">
+              <Link
+                href="/pl/partnerzy/zostan-partnerem"
+                className="px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition"
+              >
+                Zostań partnerem
+              </Link>
+            </div>
+          </div>
+
+          {/* PRAWA KOLUMNA – FORMULARZ */}
+          <div className="w-full max-w-md">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                name="name"
+                type="text"
+                required
+                placeholder="Imię i nazwisko"
+                className="w-full bg-black border border-white/20 p-3 text-white"
+              />
+
+              <input
+                name="email"
+                type="email"
+                required
+                placeholder="Adres e-mail"
+                className="w-full bg-black border border-white/20 p-3 text-white"
+              />
+
+              <textarea
+                name="message"
+                rows={5}
+                required
+                placeholder="Twoja wiadomość"
+                className="w-full bg-black border border-white/20 p-3 text-white"
+              />
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition"
+              >
+                {status === "sending" ? "Wysyłanie..." : "Wyślij wiadomość"}
+              </button>
+
+              {status === "success" && (
+                <p className="text-green-500 mt-2">
+                  ✅ Wiadomość została wysłana.
+                </p>
+              )}
+
+              {status === "error" && (
+                <p className="text-red-500 mt-2">
+                  ❌ Błąd wysyłki. Spróbuj ponownie.
+                </p>
+              )}
+            </form>
+          </div>
+
+        </div>
+      </section>
     </>
   );
 }

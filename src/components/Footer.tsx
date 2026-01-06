@@ -25,28 +25,28 @@ export default function Footer() {
           {/* NAWIGACJA */}
           <div className="grid grid-cols-2 gap-4 text-sm">
             <nav className="flex flex-col gap-2">
-              <Link href="/pl" className="text-white/80 hover:text-brand-gold">
+              <Link href="/" className="text-white/80 hover:text-brand-gold">
                 Home
               </Link>
-              <Link href="/pl/o-nas" className="text-white/80 hover:text-brand-gold">
+              <Link href="/o-nas" className="text-white/80 hover:text-brand-gold">
                 O nas
               </Link>
-              <Link href="/pl/statut" className="text-white/80 hover:text-brand-gold">
+              <Link href="/statut" className="text-white/80 hover:text-brand-gold">
                 Statut
               </Link>
-              <Link href="/pl/media" className="text-white/80 hover:text-brand-gold">
+              <Link href="/media" className="text-white/80 hover:text-brand-gold">
                 Media
               </Link>
             </nav>
 
             <nav className="flex flex-col gap-2">
-              <Link href="/pl/partnerzy" className="text-white/80 hover:text-brand-gold">
+              <Link href="/partnerzy" className="text-white/80 hover:text-brand-gold">
                 Partnerzy
               </Link>
-              <Link href="/pl/members" className="text-white/80 hover:text-brand-gold">
+              <Link href="/members" className="text-white/80 hover:text-brand-gold">
                 Members
               </Link>
-              <Link href="/pl/kontakt" className="text-white/80 hover:text-brand-gold">
+              <Link href="/kontakt" className="text-white/80 hover:text-brand-gold">
                 Kontakt
               </Link>
             </nav>

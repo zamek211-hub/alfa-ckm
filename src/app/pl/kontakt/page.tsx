@@ -29,8 +29,7 @@ export default function KontaktPage() {
 
       setStatus("success");
       e.currentTarget.reset();
-    } catch (err) {
-      console.error(err);
+    } catch {
       setStatus("error");
     }
   }
@@ -64,9 +63,7 @@ export default function KontaktPage() {
               <p className="text-white font-semibold">
                 Chrześcijański Klub Motocyklowy ALFA-CKM
               </p>
-
               <p>📍 Polska</p>
-
               <p>
                 ✉️{" "}
                 <a
@@ -93,12 +90,10 @@ export default function KontaktPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <input
                 name="name"
-                type="text"
                 required
                 placeholder="Imię i nazwisko"
                 className="w-full bg-black border border-white/20 p-3 text-white"
               />
-
               <input
                 name="email"
                 type="email"
@@ -106,7 +101,6 @@ export default function KontaktPage() {
                 placeholder="Adres e-mail"
                 className="w-full bg-black border border-white/20 p-3 text-white"
               />
-
               <textarea
                 name="message"
                 rows={5}
@@ -124,15 +118,10 @@ export default function KontaktPage() {
               </button>
 
               {status === "success" && (
-                <p className="text-green-500 mt-2">
-                  ✅ Wiadomość została wysłana.
-                </p>
+                <p className="text-green-500 mt-2">✅ Wiadomość została wysłana.</p>
               )}
-
               {status === "error" && (
-                <p className="text-red-500 mt-2">
-                  ❌ Błąd wysyłki. Spróbuj ponownie.
-                </p>
+                <p className="text-red-500 mt-2">❌ Błąd wysyłki.</p>
               )}
             </form>
           </div>

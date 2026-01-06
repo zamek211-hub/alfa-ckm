@@ -1,10 +1,12 @@
-<h1 className="text-red-500">TEST HOME</h1>
-
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function HomePage() {
   return (
     <div className="relative w-full h-screen bg-alfaBlack">
+      
+      {/* TESTOWY NAPIS – MOŻESZ USUNĄĆ */}
+      {/* <h1 className="text-red-500">TEST HOME</h1> */}
+
       <img
         src="/assets/baner/baner_bike.jpg"
         alt="ALFA-CKM Baner"

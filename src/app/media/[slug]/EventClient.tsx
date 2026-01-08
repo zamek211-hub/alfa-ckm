@@ -27,11 +27,18 @@ export default function EventClient({
   media: MediaItem[];
   slug: string;
 }) {
-  /* ================= SEARCH PARAMS ================= */
+ /* ================= SEARCH PARAMS ================= */
 const searchParams = useSearchParams();
-const mediaParam = searchParams?.get("media") ?? null;
+
+/**
+ * useSearchParams może być null podczas builda (SSR)
+ * dlatego MUSI być zabezpieczone
+ */
+const mediaParam: string | null =
+  searchParams ? searchParams.get("media") : null;
 
 /* ================= STATE ================= */
+   console.log("EVENTCLIENT BUILD VERSION v2");
   const [index, setIndex] = useState<number | null>(null);
 
   /* ================= DEEP LINK =================

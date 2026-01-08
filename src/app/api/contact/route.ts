@@ -22,19 +22,21 @@ export async function POST(req: Request) {
       );
     }
 
+    // 🔐 Transporter SMTP (Zoho)
     const transporter = nodemailer.createTransport({
-      host: "smtp.zoho.eu",
-      port: 465,
-      secure: true,
+      host: process.env.SMTP_HOST, // smtp.zoho.eu
+      port: Number(process.env.SMTP_PORT), // 465
+      secure: true, // wymagane dla portu 465
       auth: {
-        user: process.env.ZOHO_SMTP_USER,
-        pass: process.env.ZOHO_SMTP_PASS,
+        user: process.env.SMTP_USER, // kontakt@alfackm.pl
+        pass: process.env.SMTP_PASS, // App Password z Zoho
       },
     });
 
+    // ✉️ Wysyłka maila
     await transporter.sendMail({
-      from: `"ALFA-CKM" <${process.env.ZOHO_SMTP_USER}>`,
-      to: process.env.ZOHO_SMTP_USER,
+      from: `"ALFA-CKM" <${process.env.SMTP_USER}>`,
+      to: process.env.CONTACT_EMAIL, // kontakt@alfackm.pl
       replyTo: email,
       subject: `[Kontakt – ${subject}]`,
       text: `
@@ -58,7 +60,6 @@ ${message}
       {
         success: false,
         error: "Mail sending failed",
-        details: err?.message,
       },
       { status: 500 }
     );

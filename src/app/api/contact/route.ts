@@ -22,6 +22,13 @@ export async function POST(req: Request) {
       );
     }
 
+console.log("SMTP ENV DEBUG", {
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: process.env.SMTP_PORT,
+  SMTP_USER: process.env.SMTP_USER,
+  HAS_PASS: !!process.env.SMTP_PASS,
+});
+
     // 🔐 Transporter SMTP (Zoho)
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST, // smtp.zoho.eu

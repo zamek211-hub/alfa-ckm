@@ -13,13 +13,6 @@ interface MediaItem {
   thumb?: string;
 }
 
-/**
- * EventClient
- * - renderuje siatkę miniatur
- * - obsługuje deep-link (?media=)
- * - steruje Lightboxem
- * - zlicza statystyki (views / likes)
- */
 export default function EventClient({
   media,
   slug,
@@ -27,24 +20,23 @@ export default function EventClient({
   media: MediaItem[];
   slug: string;
 }) {
- /* ================= SEARCH PARAMS ================= */
-const searchParams = useSearchParams();
+  /* ================= SEARCH PARAMS ================= */
+  const searchParams = useSearchParams();
 
-/**
- * useSearchParams może być null podczas builda (SSR)
- * dlatego MUSI być zabezpieczone
- */
-const mediaParam: string | null =
-  searchParams ? searchParams.get("media") : null;
+  /**
+   * ⚠️ KLUCZOWE:
+   * useSearchParams może być null podczas builda (SSR),
+   * dlatego dostęp do .get() MUSI być zamknięty w useMemo
+   */
+  const mediaParam: string | null = useMemo(() => {
+    if (!searchParams) return null;
+    return searchParams.get("media");
+  }, [searchParams]);
 
-/* ================= STATE ================= */
-   console.log("EVENTCLIENT BUILD VERSION v2");
+  /* ================= STATE ================= */
   const [index, setIndex] = useState<number | null>(null);
 
-  /* ================= DEEP LINK =================
-     Umożliwia otwarcie konkretnego zdjęcia przez URL
-     np. /media/event-slug?media=3
-  ============================================== */
+  /* ================= DEEP LINK ================= */
   useEffect(() => {
     if (!mediaParam) return;
 
@@ -59,10 +51,7 @@ const mediaParam: string | null =
     }
   }, [mediaParam, media.length]);
 
-  /* ================= URL UPDATE =================
-     Synchronizuje stan lightboxa z adresem URL
-     bez przeładowania strony
-  ============================================== */
+  /* ================= URL UPDATE ================= */
   const updateUrl = (newIndex: number | null) => {
     const url = new URL(window.location.href);
 
@@ -86,10 +75,7 @@ const mediaParam: string | null =
     [media]
   );
 
-  /* ================= STATS =================
-     Zliczane globalnie dla wydarzenia
-     (suma wszystkich zdjęć i video)
-  ========================================== */
+  /* ================= STATS ================= */
   const [totalViews, setTotalViews] = useState(0);
   const [totalLikes, setTotalLikes] = useState(0);
 
@@ -109,7 +95,7 @@ const mediaParam: string | null =
   /* ================= RENDER ================= */
   return (
     <>
-      {/* ===== GRID ===== */}
+      {/* GRID */}
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
         {media.map((item, i) => (
           <button
@@ -147,13 +133,13 @@ const mediaParam: string | null =
         ))}
       </div>
 
-      {/* ===== STATS ===== */}
+      {/* STATS */}
       <div className="mt-6 text-sm text-center text-brand-gold/80">
         {imagesCount} zdjęć · {videosCount} video · {totalViews} wyświetleń ·{" "}
         {totalLikes} polubień
       </div>
 
-      {/* ===== LIGHTBOX ===== */}
+      {/* LIGHTBOX */}
       {index !== null && (
         <LightboxPro
           items={media}

@@ -1,53 +1,65 @@
+import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * HOME – JEDYNA WERSJA (PL)
+ * Przeniesiony 1:1 z dawnego /pl
+ * Adres: /
+ */
 export default function HomePage() {
   return (
-    <div className="relative w-full h-screen bg-alfaBlack">
-      
-      {/* TESTOWY NAPIS – MOŻESZ USUNĄĆ */}
-      {/* <h1 className="text-red-500">TEST HOME</h1> */}
+    <section
+      className="relative h-[100svh] w-full bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/assets/baner/baner_bike.jpg')",
+      }}
+    >
+      {/* 🔰 LOGO KLUBU – LEWY GÓRNY RÓG */}
+      <div className="absolute top-6 left-6 z-20">
+        <Image
+          src="/assets/logo/alfa-ckm-logo.png"
+          alt="ALFA-CKM Logo"
+          width={600}
+          height={600}
+          priority
+          className="
+            w-[88px]
+            md:w-[120px]
+            lg:w-[150px]
+            opacity-90
+          "
+        />
+      </div>
 
-      <img
-        src="/assets/baner/baner_bike.jpg"
-        alt="ALFA-CKM Baner"
-        className="w-full h-full object-cover"
-      />
+      {/* PRZYCIEMNIENIE BANERA */}
+      <div className="absolute inset-0 bg-black/40" />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 text-center px-4">
-        <h1 className="text-6xl md:text-7xl font-bold text-alfaRed tracking-widest mb-4">
+      {/* TREŚĆ HERO */}
+      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-4">
+        <h1 className="text-brand-red text-4xl md:text-6xl font-bold tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
           ALFA-CKM
         </h1>
 
-        <p className="text-sm md:text-base text-alfaCream uppercase tracking-wider mb-10">
+        <p className="mt-4 text-white/90 uppercase tracking-widest text-sm md:text-base">
           Wiara • Braterstwo • Wolność na Dwóch Kołach
         </p>
 
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="mt-10 flex flex-col sm:flex-row gap-4">
           <Link
-            href="/about"
-            className="px-6 py-2 text-sm border border-alfaGold text-alfaGold
-                       hover:bg-alfaGold hover:text-alfaBlack transition"
+            href="/o-nas"
+            className="px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition"
           >
             Poznaj nas
           </Link>
 
           <Link
-            href="/members"
-            className="px-6 py-2 text-sm border border-alfaGold text-alfaGold
-                       hover:bg-alfaGold hover:text-alfaBlack transition"
-          >
-            Dołącz do nas
-          </Link>
-
-          <Link
             href="/media"
-            className="px-6 py-2 text-sm border border-alfaGold text-alfaGold
-                       hover:bg-alfaGold hover:text-alfaBlack transition"
+            className="px-6 py-3 border border-white text-white hover:bg-white hover:text-black transition"
           >
             Zobacz galerię
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

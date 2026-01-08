@@ -3,14 +3,21 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+/**
+ * API: /api/contact
+ * Odbiera dane z formularza kontaktowego
+ * Wysyła maila przez Zoho SMTP
+ */
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, message } = body;
 
-    if (!name || !email || !message) {
+    const { name, email, phone, subject, message } = body;
+
+    // 🔒 Walidacja danych
+    if (!name || !email || !phone || !subject || !message) {
       return NextResponse.json(
-        { error: "Missing fields" },
+        { success: false, error: "Missing required fields" },
         { status: 400 }
       );
     }
@@ -28,20 +35,39 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"ALFA-CKM" <${process.env.ZOHO_SMTP_USER}>`,
       to: process.env.ZOHO_SMTP_USER,
-      subject: "Nowa wiadomość z formularza",
-      text: `Imię: ${name}\nEmail: ${email}\n\n${message}`,
+      replyTo: email,
+      subject: `[Kontakt – ${subject}]`,
+      text: `
+Nowa wiadomość z formularza kontaktowego ALFA-CKM
+
+Imię i nazwisko: ${name}
+E-mail: ${email}
+Telefon: ${phone}
+Temat: ${subject}
+
+Wiadomość:
+${message}
+      `,
     });
 
-    return NextResponse.json({ ok: true, sent: true });
+    return NextResponse.json({ success: true });
   } catch (err: any) {
     console.error("MAIL ERROR:", err);
+
     return NextResponse.json(
-      { error: "Mail failed", details: err.message },
+      {
+        success: false,
+        error: "Mail sending failed",
+        details: err?.message,
+      },
       { status: 500 }
     );
   }
 }
 
+/**
+ * GET – test endpointu
+ */
 export async function GET() {
-  return NextResponse.json({ ok: true, method: "GET" });
+  return NextResponse.json({ ok: true });
 }

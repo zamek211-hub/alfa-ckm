@@ -5,16 +5,14 @@ import nodemailer from "nodemailer";
 
 /**
  * API: /api/contact
- * Odbiera dane z formularza kontaktowego
- * Wysyła maila przez Zoho SMTP
+ * Formularz kontaktowy – wysyłka maila przez Zoho SMTP
  */
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-
     const { name, email, phone, subject, message } = body;
 
-    // 🔒 Walidacja danych
+    // Walidacja
     if (!name || !email || !phone || !subject || !message) {
       return NextResponse.json(
         { success: false, error: "Missing required fields" },
@@ -22,28 +20,21 @@ export async function POST(req: Request) {
       );
     }
 
-console.log("SMTP ENV DEBUG", {
-  SMTP_HOST: process.env.SMTP_HOST,
-  SMTP_PORT: process.env.SMTP_PORT,
-  SMTP_USER: process.env.SMTP_USER,
-  HAS_PASS: !!process.env.SMTP_PASS,
-});
-
-    // 🔐 Transporter SMTP (Zoho)
+    // Transporter SMTP (Zoho)
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST, // smtp.zoho.eu
-      port: Number(process.env.SMTP_PORT), // 465
-      secure: true, // wymagane dla portu 465
+      host: process.env.SMTP_HOST!,      // np. smtp.zoho.eu
+      port: Number(process.env.SMTP_PORT!), // 465
+      secure: true, // wymagane dla 465
       auth: {
-        user: process.env.SMTP_USER, // kontakt@alfackm.pl
-        pass: process.env.SMTP_PASS, // App Password z Zoho
+        user: process.env.SMTP_USER!, // kontakt@alfackm.pl
+        pass: process.env.SMTP_PASS!, // App Password
       },
     });
 
-    // ✉️ Wysyłka maila
+    // Wysyłka maila
     await transporter.sendMail({
       from: `"ALFA-CKM" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_EMAIL, // kontakt@alfackm.pl
+      to: process.env.CONTACT_EMAIL!, // kontakt@alfackm.pl
       replyTo: email,
       subject: `[Kontakt – ${subject}]`,
       text: `
@@ -60,22 +51,17 @@ ${message}
     });
 
     return NextResponse.json({ success: true });
-  } catch (err: any) {
-    console.error("MAIL ERROR:", err);
+  } catch (error) {
+    console.error("CONTACT API ERROR:", error);
 
     return NextResponse.json(
-      {
-        success: false,
-        error: "Mail sending failed",
-      },
+      { success: false, error: "Mail sending failed" },
       { status: 500 }
     );
   }
 }
 
-/**
- * GET – test endpointu
- */
+// Health check
 export async function GET() {
   return NextResponse.json({ ok: true });
 }

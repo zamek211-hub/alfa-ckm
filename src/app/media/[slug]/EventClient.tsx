@@ -28,10 +28,10 @@ export default function EventClient({
   slug: string;
 }) {
   /* ================= SEARCH PARAMS ================= */
-  const searchParams = useSearchParams();
-  const mediaParam = searchParams.get("media");
+const searchParams = useSearchParams();
+const mediaParam = searchParams?.get("media") ?? null;
 
-  /* ================= STATE ================= */
+/* ================= STATE ================= */
   const [index, setIndex] = useState<number | null>(null);
 
   /* ================= DEEP LINK =================

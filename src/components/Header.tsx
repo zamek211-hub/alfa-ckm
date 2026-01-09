@@ -22,6 +22,7 @@ const menu = [
 
 export default function Header() {
   const pathname = usePathname();
+  const pathnameSafe = pathname ?? ""; // ⬅️ KLUCZOWE: guard na null
   const [open, setOpen] = useState(false);
 
   return (
@@ -47,8 +48,8 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-6 text-sm uppercase tracking-wide">
             {menu.map((item) => {
               const isActive =
-                pathname === item.href ||
-                pathname.startsWith(item.href + "/");
+                pathnameSafe === item.href ||
+                pathnameSafe.startsWith(item.href + "/");
 
               return (
                 <Link
@@ -70,7 +71,7 @@ export default function Header() {
           <button
             className="md:hidden text-brand-gold text-2xl"
             aria-label="Otwórz menu"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen((prev) => !prev)}
           >
             {open ? "✕" : "☰"}
           </button>
@@ -83,8 +84,8 @@ export default function Header() {
           <ul className="flex flex-col px-6 py-4 gap-4 uppercase text-sm">
             {menu.map((item) => {
               const isActive =
-                pathname === item.href ||
-                pathname.startsWith(item.href + "/");
+                pathnameSafe === item.href ||
+                pathnameSafe.startsWith(item.href + "/");
 
               return (
                 <li key={item.name}>

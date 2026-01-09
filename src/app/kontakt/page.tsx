@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 /**
  * STRONA: /kontakt
  * Kontakt bez formularza – wersja produkcyjna
@@ -14,69 +16,72 @@ export default function KontaktPage() {
             Kontakt
           </h1>
           <p className="text-white/80 max-w-2xl text-base sm:text-lg">
-            Chrześcijański Klub Motocyklowy ALFA-CKM.  
+            Chrześcijański Klub Motocyklowy ALFA-CKM Polkowice.  
             Jeśli chcesz nawiązać kontakt, dowiedzieć się więcej o klubie
             lub o współpracy – zapraszamy do bezpośredniego kontaktu.
           </p>
         </div>
       </section>
 
-      {/* TREŚĆ */}
+      {/* TREŚĆ + LOGO */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-        <div className="max-w-3xl space-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
-          {/* EMAIL */}
-          <div>
-            <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-2">
-              📧 Kontakt e-mail
-            </h2>
-            <p className="text-white text-lg">
-              <a
-                href="mailto:kontakt@alfackm.pl"
-                className="underline underline-offset-4 hover:text-brand-gold break-all"
-              >
-                kontakt@alfackm.pl
-              </a>
-            </p>
-          </div>
+          {/* LEWA KOLUMNA – TREŚĆ */}
+          <div className="space-y-12">
 
-          {/* TELEFON */}
-          <div>
-            <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-2">
-              📞 Kontakt telefoniczny
-            </h2>
-            <p className="text-white text-lg">
-              <a
-                href="tel:+48123456789"
-                className="underline underline-offset-4 hover:text-brand-gold"
-              >
-                +48 123 456 789
-              </a>
-            </p>
-            <p className="text-white/60 text-sm mt-1">
-              Jeśli nie odbierzemy – oddzwonimy.
-            </p>
-          </div>
+            {/* EMAIL */}
+            <div>
+              <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-2">
+                📧 Kontakt e-mail
+              </h2>
+              <p className="text-white text-lg">
+                <a
+                  href="mailto:alfackm@gmail.com"
+                  className="underline underline-offset-4 hover:text-brand-gold break-all"
+                >
+                  alfackm@gmail.com
+                </a>
+              </p>
+            </div>
 
-          {/* JAK NAPISAĆ */}
-          <div>
-            <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-4">
-              Jak napisać do ALFA-CKM?
-            </h2>
-            <ul className="space-y-2 text-white/90 list-disc list-inside">
-              <li>Wyślij wiadomość e-mail na adres podany powyżej.</li>
-              <li>Napisz krótko, czego dotyczy Twoja sprawa.</li>
-              <li>Podaj numer telefonu, jeśli oczekujesz kontaktu zwrotnego.</li>
-            </ul>
-          </div>
+            {/* TELEFON */}
+            <div>
+              <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-2">
+                📞 Kontakt telefoniczny
+              </h2>
+              <p className="text-white text-lg">
+                <a
+                  href="tel:+48667259614"
+                  className="underline underline-offset-4 hover:text-brand-gold"
+                >
+                  +48 667 259 614
+                </a>
+              </p>
+              <p className="text-white/60 text-sm mt-1">
+                Jeśli nie odbierzemy – oddzwonimy.
+              </p>
+            </div>
 
-          {/* WZÓR WIADOMOŚCI */}
-          <div className="bg-black border border-white/20 p-5 sm:p-6 rounded">
-            <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-4">
-              Przykładowa treść wiadomości
-            </h2>
+            {/* JAK NAPISAĆ */}
+            <div>
+              <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-4">
+                Jak napisać do ALFA-CKM?
+              </h2>
+              <ul className="space-y-2 text-white/90 list-disc list-inside">
+                <li>Wyślij wiadomość e-mail na adres podany powyżej.</li>
+                <li>Napisz krótko, czego dotyczy Twoja sprawa.</li>
+                <li>Podaj numer telefonu, jeśli oczekujesz kontaktu zwrotnego.</li>
+              </ul>
+            </div>
 
-            <pre className="whitespace-pre-wrap text-white/90 text-sm leading-relaxed">
+            {/* WZÓR WIADOMOŚCI */}
+            <div className="bg-black border border-white/20 p-5 sm:p-6 rounded">
+              <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-4">
+                Przykładowa treść wiadomości
+              </h2>
+
+              <pre className="whitespace-pre-wrap text-white/90 text-sm leading-relaxed">
 {`Temat: Kontakt – ALFA-CKM
 
 Dzień dobry,
@@ -93,15 +98,29 @@ Numer telefonu do kontaktu (opcjonalnie):
 [twój numer]
 
 Z wyrazami szacunku`}
-            </pre>
+              </pre>
+            </div>
+
+            {/* INFO */}
+            <p className="text-white/60 text-sm leading-relaxed">
+              Odpowiadamy na wiadomości możliwie najszybciej.  
+              ALFA-CKM to chrześcijański klub motocyklowy – cenimy kulturę,
+              szacunek i jasną komunikację.
+            </p>
+
           </div>
 
-          {/* INFO */}
-          <p className="text-white/60 text-sm leading-relaxed">
-            Odpowiadamy na wiadomości możliwie najszybciej.  
-            ALFA-CKM to chrześcijański klub motocyklowy – cenimy kulturę,
-            szacunek i jasną komunikację.
-          </p>
+          {/* PRAWA KOLUMNA – LOGO */}
+          <div className="flex justify-center md:justify-end">
+            <Image
+              src="/assets/logo/alfa-ckm-logo.png"
+              alt="ALFA-CKM Logo"
+              width={600}
+              height={600}
+              priority
+              className="w-[120px] md:w-[150px] lg:w-[180px] opacity-90"
+            />
+          </div>
 
         </div>
       </section>

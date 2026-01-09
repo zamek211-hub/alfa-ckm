@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import EventClient from "./EventClient";
 
 /* =======================
-   METADATA (SEO)
+   METADATA (SEO + CANONICAL)
 ======================= */
 
 export async function generateMetadata({
@@ -20,6 +20,9 @@ export async function generateMetadata({
     return {
       title: "Wydarzenie | ALFA-CKM",
       description: "Relacja z wydarzenia ALFA-CKM.",
+      alternates: {
+        canonical: "https://www.alfackm.pl/media",
+      },
     };
   }
 
@@ -31,6 +34,9 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: {
+      canonical: `https://www.alfackm.pl/media/${event.slug}`,
+    },
     openGraph: {
       title,
       description,

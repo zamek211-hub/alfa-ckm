@@ -5,13 +5,16 @@ import { events } from "@/data/events";
 import { Metadata } from "next";
 
 /* =======================
-   METADATA (SEO)
+   METADATA (SEO + CANONICAL)
 ======================= */
 
 export const metadata: Metadata = {
   title: "Media | Wydarzenia ALFA-CKM",
   description:
     "Galeria wydarzeń ALFA-CKM – wyprawy motocyklowe, szkolenia, integracje i życie klubowe.",
+  alternates: {
+    canonical: "https://www.alfackm.pl/media",
+  },
   openGraph: {
     title: "Media | Wydarzenia ALFA-CKM",
     description:
@@ -44,12 +47,10 @@ export const metadata: Metadata = {
 export default function MediaPage() {
   return (
     <section className="container mx-auto px-4 py-12">
-      {/* NAGŁÓWEK STRONY */}
       <h1 className="text-4xl md:text-5xl font-bold text-brand-gold mb-12 text-center">
         Media / Wydarzenia
       </h1>
 
-      {/* LISTA WYDARZEŃ */}
       <div className="grid md:grid-cols-3 gap-6">
         {events.map((event) => (
           <Link
@@ -57,17 +58,16 @@ export default function MediaPage() {
             href={`/media/${event.slug}`}
             className="group block bg-black border border-brand-gold/30 hover:border-brand-gold transition"
           >
-            {/* COVER */}
             <div className="relative aspect-video overflow-hidden">
               <img
                 src={event.cover}
                 alt={event.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 
-            {/* OPIS */}
             <div className="p-4 space-y-2">
               <h2 className="text-lg font-semibold text-white">
                 {event.title}

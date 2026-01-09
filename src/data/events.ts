@@ -77,7 +77,7 @@ export const events: EventItem[] = [
     location: "Polska",
     description:
       "Szkolenie offroadowe dla członków ALFA CKM. Doskonalenie techniki jazdy w terenie i wspólna praca nad umiejętnościami.",
-    cover: "/assets/images/offroad-2024/cover.jpg",
+    cover: "/assets/images/offroad-2024/cover.jpg?v=1",
     media: [
       ...images("offroad-2024", 20),
       //...videos("offroad-2024", 5),
@@ -91,7 +91,7 @@ export const events: EventItem[] = [
     location: "Polska",
     description:
       "Klubowe spotkanie ALFA CKM. Czas rozmów, integracji i wspólnego budowania relacji w motocyklowej wspólnocie.",
-    cover: "/assets/images/impreza-klubowa/cover.jpg",
+    cover: "/assets/images/impreza-klubowa/cover.jpg?v=1",
     media: [
       ...images("impreza-klubowa", 20),
      //...videos("impreza-klubowa", 5),
@@ -105,7 +105,7 @@ export const events: EventItem[] = [
     location: "Sudety",
     description:
       "Jesienny wypad ALFA CKM w Sudety. Wspólna trasa motocyklowa, rozmowy i czas spędzony w braterskiej atmosferze.",
-    cover: "/assets/images/wypad-sudety-10-2025/cover.jpg",
+    cover: "/assets/images/wypad-sudety-10-2025/cover.jpg?v=1",
     media: [
       ...images("wypad-sudety-10-2025", 15),
     ],

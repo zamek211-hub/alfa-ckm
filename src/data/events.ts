@@ -1,16 +1,20 @@
 /*
 ====================================================
-EVENTS DATA – FINAL
+EVENTS DATA – FINAL (KANONICZNA WERSJA)
 – folder = slug eventu
-– images: /assets/images/{slug}/photo1.jpg ... photo20.jpg
-– videos: /assets/videos/{slug}/video1.mp4 ... video5.mp4
+– images:
+    /assets/images/{slug}/photo1.jpg ... photoN.jpg
+– thumbs:
+    /assets/images/{slug}/thumbs/photo1.jpg ... photoN.jpg
+– videos:
+    /assets/videos/{slug}/video1.mp4 ... videoN.mp4
 ====================================================
 */
 
 export interface MediaItem {
   type: "image" | "mp4";
-  src: string;      // DUŻE zdjęcie
-  thumb?: string;   // MINIATURKA
+  src: string;      // DUŻE zdjęcie / video
+  thumb?: string;   // MINIATURKA (tylko dla image)
 }
 
 export type EventItem = {
@@ -19,8 +23,9 @@ export type EventItem = {
   date: string;
   cover: string;
   media: MediaItem[];
-  visibility?: "public" | "members";
+  description?: string;
   location?: string;
+  visibility?: "public" | "members";
   type?: string;
 };
 
@@ -30,7 +35,7 @@ HELPERY
 ====================================================
 */
 
-// generuje zdjęcia photo1.jpg ... photoN.jpg
+// zdjęcia: photo1.jpg ... photoN.jpg
 const images = (slug: string, count: number): MediaItem[] =>
   Array.from({ length: count }, (_, i) => ({
     type: "image",
@@ -38,14 +43,13 @@ const images = (slug: string, count: number): MediaItem[] =>
     thumb: `/assets/images/${slug}/thumbs/photo${i + 1}.jpg`,
   }));
 
-// generuje video video1.mp4 ... videoN.mp4
+// video: video1.mp4 ... videoN.mp4
 const videos = (slug: string, count: number): MediaItem[] =>
   Array.from({ length: count }, (_, i) => ({
     type: "mp4",
     src: `/assets/videos/${slug}/video${i + 1}.mp4`,
   }));
 
-/*
 /*
 ====================================================
 EVENTS
@@ -95,15 +99,15 @@ export const events: EventItem[] = [
   },
 
   {
-  slug: "wypad-sudety-10-2025",
-  title: "Wypad ALFA CKM w Sudety – Październik 2025",
-  date: "2025-10-01",
-  location: "Sudety",
-  description:
-    "Jesienny wypad ALFA CKM w Sudety. Wspólna trasa motocyklowa, rozmowy i czas spędzony w braterskiej atmosferze.",
-  cover: "/assets/events/wypad-sudety-10-2025/cover.jpg",
-  media: [
-    ...images("wypad-sudety-10-2025", 15),
-  ],
+    slug: "wypad-sudety-10-2025",
+    title: "Wypad ALFA CKM w Sudety – Październik 2025",
+    date: "2025-10-01",
+    location: "Sudety",
+    description:
+      "Jesienny wypad ALFA CKM w Sudety. Wspólna trasa motocyklowa, rozmowy i czas spędzony w braterskiej atmosferze.",
+    cover: "/assets/images/wypad-sudety-10-2025/cover.jpg",
+    media: [
+      ...images("wypad-sudety-10-2025", 15),
+    ],
   },
 ];

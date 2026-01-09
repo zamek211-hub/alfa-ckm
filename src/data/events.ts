@@ -1,20 +1,13 @@
 /*
 ====================================================
-EVENTS DATA – FINAL (KANONICZNA WERSJA)
-– folder = slug eventu
-– images:
-    /assets/images/{slug}/photo1.jpg ... photoN.jpg
-– thumbs:
-    /assets/images/{slug}/thumbs/photo1.jpg ... photoN.jpg
-– videos:
-    /assets/videos/{slug}/video1.mp4 ... videoN.mp4
+EVENTS DATA – FINAL (SEO-READY)
 ====================================================
 */
 
 export interface MediaItem {
   type: "image" | "mp4";
-  src: string;      // DUŻE zdjęcie / video
-  thumb?: string;   // MINIATURKA (tylko dla image)
+  src: string;
+  thumb?: string;
 }
 
 export type EventItem = {
@@ -23,19 +16,17 @@ export type EventItem = {
   date: string;
   cover: string;
   media: MediaItem[];
-  description?: string;
   location?: string;
+  description?: string;
   visibility?: "public" | "members";
-  type?: string;
 };
 
 /*
 ====================================================
-HELPERY
+HELPERS
 ====================================================
 */
 
-// zdjęcia: photo1.jpg ... photoN.jpg
 const images = (slug: string, count: number): MediaItem[] =>
   Array.from({ length: count }, (_, i) => ({
     type: "image",
@@ -43,7 +34,6 @@ const images = (slug: string, count: number): MediaItem[] =>
     thumb: `/assets/images/${slug}/thumbs/photo${i + 1}.jpg`,
   }));
 
-// video: video1.mp4 ... videoN.mp4
 const videos = (slug: string, count: number): MediaItem[] =>
   Array.from({ length: count }, (_, i) => ({
     type: "mp4",
@@ -55,6 +45,7 @@ const videos = (slug: string, count: number): MediaItem[] =>
 EVENTS
 ====================================================
 */
+
 export const events: EventItem[] = [
   {
     slug: "bieszczady-2023",
@@ -62,8 +53,8 @@ export const events: EventItem[] = [
     date: "2023-06-20",
     location: "Bieszczady",
     description:
-      "Motocyklowa wyprawa ALFA CKM w Bieszczady. Wspólna trasa, rozmowy i czas spędzony w braterskiej atmosferze.",
-    cover: "/assets/images/bieszczady-2023/cover.jpg?v=1",
+      "Motocyklowa wyprawa ALFA-CKM w Bieszczady. Wspólna trasa, rozmowy i czas spędzony w braterskiej, chrześcijańskiej wspólnocie motocyklowej.",
+    cover: "/assets/images/bieszczady-2023/cover.jpg",
     media: [
       ...images("bieszczady-2023", 20),
       //...videos("bieszczady-2023", 5),
@@ -76,8 +67,8 @@ export const events: EventItem[] = [
     date: "2024-04-12",
     location: "Polska",
     description:
-      "Szkolenie offroadowe dla członków ALFA CKM. Doskonalenie techniki jazdy w terenie i wspólna praca nad umiejętnościami.",
-    cover: "/assets/images/offroad-2024/cover.jpg?v=1",
+      "Szkolenie offroadowe dla członków ALFA-CKM. Nauka techniki jazdy w terenie, bezpieczeństwo i rozwój umiejętności w motocyklowej wspólnocie.",
+    cover: "/assets/images/offroad-2024/cover.jpg",
     media: [
       ...images("offroad-2024", 20),
       //...videos("offroad-2024", 5),
@@ -86,25 +77,25 @@ export const events: EventItem[] = [
 
   {
     slug: "impreza-klubowa",
-    title: "Impreza Klubowa",
+    title: "Impreza Klubowa ALFA-CKM",
     date: "2024-08-01",
     location: "Polska",
     description:
-      "Klubowe spotkanie ALFA CKM. Czas rozmów, integracji i wspólnego budowania relacji w motocyklowej wspólnocie.",
-    cover: "/assets/images/impreza-klubowa/cover.jpg?v=1",
+      "Klubowe spotkanie integracyjne ALFA-CKM. Czas rozmów, relacji i budowania wspólnoty chrześcijańskiego klubu motocyklowego.",
+    cover: "/assets/images/impreza-klubowa/cover.jpg",
     media: [
       ...images("impreza-klubowa", 20),
-     //...videos("impreza-klubowa", 5),
+      //...videos("impreza-klubowa", 5),
     ],
   },
 
   {
     slug: "wypad-sudety-10-2025",
-    title: "Wypad ALFA CKM w Sudety – Październik 2025",
+    title: "Wypad ALFA-CKM w Sudety – Październik 2025",
     date: "2025-10-01",
     location: "Sudety",
     description:
-      "Jesienny wypad ALFA CKM w Sudety. Wspólna trasa motocyklowa, rozmowy i czas spędzony w braterskiej atmosferze.",
+      "Jesienny wypad motocyklowy ALFA-CKM w Sudety. Wspólna trasa, rozmowy i czas spędzony w chrześcijańskiej wspólnocie motocyklowej.",
     cover: "/assets/images/wypad-sudety-10-2025/cover-1.jpg",
     media: [
       ...images("wypad-sudety-10-2025", 15),

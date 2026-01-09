@@ -105,7 +105,7 @@ export const events: EventItem[] = [
     location: "Sudety",
     description:
       "Jesienny wypad ALFA CKM w Sudety. Wspólna trasa motocyklowa, rozmowy i czas spędzony w braterskiej atmosferze.",
-    cover: "/assets/images/wypad-sudety-10-2025/cover.jpg?v=1",
+    cover: "/assets/images/wypad-sudety-10-2025/cover-1.jpg",
     media: [
       ...images("wypad-sudety-10-2025", 15),
     ],

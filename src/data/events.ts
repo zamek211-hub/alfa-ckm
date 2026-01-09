@@ -46,6 +46,7 @@ const videos = (slug: string, count: number): MediaItem[] =>
   }));
 
 /*
+/*
 ====================================================
 EVENTS
 ====================================================
@@ -55,7 +56,9 @@ export const events: EventItem[] = [
     slug: "bieszczady-2023",
     title: "Wyprawa Bieszczady 2023",
     date: "2023-06-20",
-	location: "Bieszczady",
+    location: "Bieszczady",
+    description:
+      "Motocyklowa wyprawa ALFA CKM w Bieszczady. Wspólna trasa, rozmowy i czas spędzony w braterskiej atmosferze.",
     cover: "/assets/images/bieszczady-2023/cover.jpg?v=1",
     media: [
       ...images("bieszczady-2023", 20),
@@ -67,6 +70,9 @@ export const events: EventItem[] = [
     slug: "offroad-2024",
     title: "Szkolenie Offroad 2024",
     date: "2024-04-12",
+    location: "Polska",
+    description:
+      "Szkolenie offroadowe dla członków ALFA CKM. Doskonalenie techniki jazdy w terenie i wspólna praca nad umiejętnościami.",
     cover: "/assets/images/offroad-2024/cover.jpg",
     media: [
       ...images("offroad-2024", 20),
@@ -78,10 +84,26 @@ export const events: EventItem[] = [
     slug: "impreza-klubowa",
     title: "Impreza Klubowa",
     date: "2024-08-01",
+    location: "Polska",
+    description:
+      "Klubowe spotkanie ALFA CKM. Czas rozmów, integracji i wspólnego budowania relacji w motocyklowej wspólnocie.",
     cover: "/assets/images/impreza-klubowa/cover.jpg",
     media: [
       ...images("impreza-klubowa", 20),
       ...videos("impreza-klubowa", 5),
     ],
+  },
+
+  {
+  slug: "wypad-sudety-10-2025",
+  title: "Wypad ALFA CKM w Sudety – Październik 2025",
+  date: "2025-10-01",
+  location: "Sudety",
+  description:
+    "Jesienny wypad ALFA CKM w Sudety. Wspólna trasa motocyklowa, rozmowy i czas spędzony w braterskiej atmosferze.",
+  cover: "/assets/events/wypad-sudety-10-2025/cover.jpg",
+  media: [
+    ...images("wypad-sudety-10-2025", 15),
+  ],
   },
 ];

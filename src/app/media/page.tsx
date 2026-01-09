@@ -40,6 +40,7 @@ export default function MediaPage() {
             href={`/media/${event.slug}`}
             className="group block bg-black border border-brand-gold/30 hover:border-brand-gold transition"
           >
+            {/* COVER */}
             <div className="relative aspect-video overflow-hidden">
               <img
                 src={event.cover}
@@ -49,13 +50,22 @@ export default function MediaPage() {
               />
             </div>
 
-            <div className="p-4">
+            {/* OPIS */}
+            <div className="p-4 space-y-2">
               <h2 className="text-lg font-semibold text-white">
                 {event.title}
               </h2>
+
               <p className="text-sm text-brand-gold/70">
                 {event.date}
+                {event.location && ` • ${event.location}`}
               </p>
+
+              {event.description && (
+                <p className="text-sm text-gray-300 line-clamp-3">
+                  {event.description}
+                </p>
+              )}
             </div>
           </Link>
         ))}

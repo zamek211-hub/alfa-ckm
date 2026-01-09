@@ -66,7 +66,7 @@ export const events: EventItem[] = [
     cover: "/assets/images/bieszczady-2023/cover.jpg?v=1",
     media: [
       ...images("bieszczady-2023", 20),
-      ...videos("bieszczady-2023", 5),
+      //...videos("bieszczady-2023", 5),
     ],
   },
 
@@ -80,7 +80,7 @@ export const events: EventItem[] = [
     cover: "/assets/images/offroad-2024/cover.jpg",
     media: [
       ...images("offroad-2024", 20),
-      ...videos("offroad-2024", 5),
+      //...videos("offroad-2024", 5),
     ],
   },
 
@@ -94,7 +94,7 @@ export const events: EventItem[] = [
     cover: "/assets/images/impreza-klubowa/cover.jpg",
     media: [
       ...images("impreza-klubowa", 20),
-      ...videos("impreza-klubowa", 5),
+     //...videos("impreza-klubowa", 5),
     ],
   },
 

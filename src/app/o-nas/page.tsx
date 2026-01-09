@@ -1,112 +1,73 @@
-import Link from "next/link";
+import { Metadata } from "next";
 
-/**
- * STRONA: /o-nas
- * Spójna kolorystyka z /statut
- * Zmienione WYŁĄCZNIE kolory nagłówków sekcji
- */
+export const metadata: Metadata = {
+  title: "O nas | ALFA-CKM – Chrześcijański Klub Motocyklowy",
+  description:
+    "ALFA-CKM to chrześcijański klub motocyklowy w Polsce. Łączymy pasję do motocykli, wiarę chrześcijańską i wspólnotę opartą na wartościach.",
+};
 
 export default function AboutPage() {
   return (
-    <>
-      {/* PAGE HEADER */}
-      <section className="bg-black border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-4 py-20 text-center">
-          <h1 className="text-brand-gold text-4xl md:text-5xl font-bold tracking-wide">
-            O NAS
-          </h1>
-          <p className="mt-4 text-white/80 max-w-2xl mx-auto">
-            Kim jesteśmy, w co wierzymy i dlaczego ALFA-CKM to coś więcej
-            niż klub motocyklowy.
-          </p>
-        </div>
-      </section>
+    <section className="container mx-auto px-4 py-12 max-w-4xl">
+      {/* H1 */}
+      <h1 className="text-4xl md:text-5xl font-bold text-brand-gold mb-8 text-center">
+        O nas
+      </h1>
 
-      {/* TREŚĆ */}
-      <section className="max-w-6xl mx-auto px-4 py-20 space-y-20">
-        {/* KIM JESTEŚMY */}
-        <div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-brand-gold mb-4">
-            Kim jesteśmy
-          </h2>
-          <p className="text-white/80 leading-relaxed max-w-4xl">
-            ALFA-CKM to chrześcijański klub motocyklowy zrzeszający ludzi,
-            których łączy pasja do motocykli, braterstwo oraz wiara.
-            Motocykl jest dla nas drogą – nie tylko tą asfaltową, ale także
-            duchową. Budujemy wspólnotę opartą na zaufaniu, odpowiedzialności
-            i wzajemnym wsparciu.
-          </p>
-        </div>
+      {/* INTRO */}
+      <p className="text-lg text-gray-300 mb-10 leading-relaxed">
+        <strong>ALFA-CKM</strong> to chrześcijański klub motocyklowy działający w
+        Polsce. Jesteśmy wspólnotą ludzi, których łączy pasja do motocykli,
+        wzajemny szacunek oraz wartości wypływające z wiary chrześcijańskiej.
+      </p>
 
-        {/* WARTOŚCI */}
-        <div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-brand-gold mb-6">
-            Nasze wartości
-          </h2>
+      {/* H2 */}
+      <h2 className="text-2xl font-semibold text-brand-gold mb-4">
+        Chrześcijański klub motocyklowy
+      </h2>
 
-          <div className="grid gap-8 md:grid-cols-3">
-            <div className="border border-white/10 p-6">
-              <h3 className="text-brand-gold font-semibold mb-2">
-                Wiara
-              </h3>
-              <p className="text-white/80 text-sm leading-relaxed">
-                Fundamentem naszego klubu jest wiara chrześcijańska,
-                która nadaje kierunek naszym działaniom i relacjom.
-              </p>
-            </div>
+      <p className="text-gray-300 mb-8 leading-relaxed">
+        Jako chrześcijański klub motocyklowy nie skupiamy się wyłącznie na jeździe.
+        Motocykle są dla nas przestrzenią do budowania relacji, rozmów i wzajemnego
+        wsparcia. Wierzymy, że pasja może iść w parze z odpowiedzialnością,
+        szacunkiem i życiem opartym na chrześcijańskich wartościach.
+      </p>
 
-            <div className="border border-white/10 p-6">
-              <h3 className="text-brand-gold font-semibold mb-2">
-                Braterstwo
-              </h3>
-              <p className="text-white/80 text-sm leading-relaxed">
-                Jesteśmy wspólnotą, w której liczy się lojalność,
-                wzajemna pomoc i odpowiedzialność za drugiego człowieka.
-              </p>
-            </div>
+      {/* H2 */}
+      <h2 className="text-2xl font-semibold text-brand-gold mb-4">
+        Wspólnota, a nie tylko klub
+      </h2>
 
-            <div className="border border-white/10 p-6">
-              <h3 className="text-brand-gold font-semibold mb-2">
-                Wolność
-              </h3>
-              <p className="text-white/80 text-sm leading-relaxed">
-                Wolność rozumiemy jako odpowiedzialne życie w prawdzie,
-                szacunku i zgodzie z wartościami.
-              </p>
-            </div>
-          </div>
-        </div>
+      <p className="text-gray-300 mb-8 leading-relaxed">
+        ALFA-CKM to nie tylko klub motocyklowy, ale przede wszystkim wspólnota.
+        Spotykamy się na wspólnych wyprawach, wydarzeniach i spotkaniach
+        integracyjnych. Ważna jest dla nas braterska atmosfera, zaufanie i
+        autentyczność.
+      </p>
 
-        {/* MISJA */}
-        <div>
-          <h2 className="text-2xl md:text-3xl font-semibold text-brand-gold mb-4">
-            Nasza misja
-          </h2>
-          <p className="text-white/80 leading-relaxed max-w-4xl">
-            Naszą misją jest budowanie silnej wspólnoty motocyklistów,
-            którzy poprzez swoje życie, postawę i działania świadczą
-            o wartościach chrześcijańskich – zarówno na drodze, jak i
-            poza nią.
-          </p>
-        </div>
+      {/* H2 */}
+      <h2 className="text-2xl font-semibold text-brand-gold mb-4">
+        Motocykle, wiara i codzienne życie
+      </h2>
 
-        {/* CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 pt-10">
-          <Link
-            href="/kontakt"
-            className="px-6 py-3 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black transition"
-          >
-            Dołącz do nas
-          </Link>
+      <p className="text-gray-300 mb-8 leading-relaxed">
+        Nie oddzielamy wiary od codziennego życia. Staramy się, aby nasze postawy
+        na drodze i poza nią były spójne z tym, w co wierzymy. Chrześcijańska
+        wspólnota motocyklowa to dla nas droga rozwoju – zarówno jako motocyklistów,
+        jak i ludzi.
+      </p>
 
-          <Link
-            href="/media"
-            className="px-6 py-3 border border-white text-white hover:bg-white hover:text-black transition"
-          >
-            Zobacz galerię
-          </Link>
-        </div>
-      </section>
-    </>
+      {/* H2 */}
+      <h2 className="text-2xl font-semibold text-brand-gold mb-4">
+        Dla kogo jest ALFA-CKM?
+      </h2>
+
+      <p className="text-gray-300 leading-relaxed">
+        ALFA-CKM jest otwarte dla osób, które chcą połączyć pasję do motocykli z
+        wartościami chrześcijańskimi. Niezależnie od rodzaju motocykla czy
+        doświadczenia, liczy się postawa, otwartość i gotowość do budowania
+        wspólnoty.
+      </p>
+    </section>
   );
 }

@@ -4,14 +4,18 @@ import Link from "next/link";
 import { events } from "@/data/events";
 import { Metadata } from "next";
 
+/* =======================
+   METADATA (SEO)
+======================= */
+
 export const metadata: Metadata = {
-  title: "Media | ALFA-CKM",
+  title: "Media | Wydarzenia ALFA-CKM",
   description:
-    "Galeria wydarzeń ALFA-CKM – wyprawy, szkolenia, integracje i życie klubowe.",
+    "Galeria wydarzeń ALFA-CKM – wyprawy motocyklowe, szkolenia, integracje i życie klubowe.",
   openGraph: {
-    title: "Media | ALFA-CKM",
+    title: "Media | Wydarzenia ALFA-CKM",
     description:
-      "Zdjęcia i video z wydarzeń ALFA-CKM – chrześcijański klub motocyklowy.",
+      "Zdjęcia i materiały video z wydarzeń ALFA-CKM – chrześcijański klub motocyklowy.",
     url: "https://www.alfackm.pl/media",
     siteName: "ALFA-CKM",
     images: [
@@ -24,7 +28,18 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Media | Wydarzenia ALFA-CKM",
+    description:
+      "Galeria wydarzeń ALFA-CKM – wyprawy, szkolenia i życie klubowe.",
+    images: ["https://www.alfackm.pl/assets/og/media.jpg"],
+  },
 };
+
+/* =======================
+   PAGE
+======================= */
 
 export default function MediaPage() {
   return (

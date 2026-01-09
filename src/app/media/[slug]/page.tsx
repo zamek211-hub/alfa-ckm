@@ -1,11 +1,12 @@
-import { notFound } from "next/navigation";
 import { events } from "@/data/events";
-import EventClient from "./EventClient";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import EventClient from "./EventClient";
 
 /* =======================
-   METADATA
+   METADATA (SEO)
 ======================= */
+
 export async function generateMetadata({
   params,
 }: {
@@ -22,12 +23,17 @@ export async function generateMetadata({
     };
   }
 
+  const title = `${event.title} | ALFA-CKM`;
+  const description =
+    event.description ??
+    `Relacja z wydarzenia ${event.title}.`;
+
   return {
-    title: `${event.title} | ALFA-CKM`,
-    description: `Relacja z wydarzenia ${event.title}.`,
+    title,
+    description,
     openGraph: {
-      title: `${event.title} | ALFA-CKM`,
-      description: `Zdjęcia i relacja z wydarzenia ${event.title}.`,
+      title,
+      description,
       url: `https://www.alfackm.pl/media/${event.slug}`,
       siteName: "ALFA-CKM",
       images: [
@@ -40,12 +46,19 @@ export async function generateMetadata({
       locale: "pl_PL",
       type: "article",
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`https://www.alfackm.pl${event.cover}`],
+    },
   };
 }
 
 /* =======================
    PAGE
 ======================= */
+
 export default async function EventPage({
   params,
 }: {

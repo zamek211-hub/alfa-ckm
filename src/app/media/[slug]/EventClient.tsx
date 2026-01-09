@@ -20,18 +20,16 @@ export default function EventClient({
   media: MediaItem[];
   slug: string;
 }) {
-  /* ================= SEARCH PARAMS ================= */
-  const searchParams = useSearchParams();
+  /* ================= SEARCH PARAM ================= */
+const [mediaParam, setMediaParam] = useState<string | null>(null);
 
-  /**
-   * ⚠️ KLUCZOWE:
-   * useSearchParams może być null podczas builda (SSR),
-   * dlatego dostęp do .get() MUSI być zamknięty w useMemo
-   */
-  const mediaParam: string | null = useMemo(() => {
-    if (!searchParams) return null;
-    return searchParams.get("media");
-  }, [searchParams]);
+useEffect(() => {
+  if (typeof window === "undefined") return;
+
+  const url = new URL(window.location.href);
+  setMediaParam(url.searchParams.get("media"));
+}, []);
+
 
   /* ================= STATE ================= */
   const [index, setIndex] = useState<number | null>(null);

@@ -19,23 +19,20 @@ export default function EventClient({
   media: MediaItem[];
   slug: string;
 }) {
-  /* ================= SEARCH PARAM (CLIENT ONLY) ================= */
-  const [mediaParam, setMediaParam] = useState<string | null>(null);
-
-  useEffect(() => {
-    // ten kod wykona się TYLKO w przeglądarce
-    const url = new URL(window.location.href);
-    setMediaParam(url.searchParams.get("media"));
-  }, []);
-
   /* ================= STATE ================= */
   const [index, setIndex] = useState<number | null>(null);
 
-  /* ================= DEEP LINK ================= */
+  /* ================= DEEP LINK =================
+     Czytamy ?media= TYLKO po stronie klienta
+     BEZ useSearchParams (problem SSR)
+  ============================================== */
   useEffect(() => {
-    if (!mediaParam) return;
+    if (typeof window === "undefined") return;
 
-    const parsed = Number(mediaParam);
+    const param = new URL(window.location.href).searchParams.get("media");
+    if (!param) return;
+
+    const parsed = Number(param);
 
     if (
       Number.isInteger(parsed) &&
@@ -44,10 +41,12 @@ export default function EventClient({
     ) {
       setIndex(parsed);
     }
-  }, [mediaParam, media.length]);
+  }, [media.length]);
 
   /* ================= URL UPDATE ================= */
   const updateUrl = (newIndex: number | null) => {
+    if (typeof window === "undefined") return;
+
     const url = new URL(window.location.href);
 
     if (newIndex === null) {
@@ -106,7 +105,7 @@ export default function EventClient({
               <img
                 src={item.thumb ?? item.src}
                 alt="Zdjęcie z wydarzenia"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform hover:scale-105"
                 loading="lazy"
               />
             )}

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import LightboxPro from "@/components/LightboxPro";
 
 /**
@@ -20,16 +19,14 @@ export default function EventClient({
   media: MediaItem[];
   slug: string;
 }) {
-  /* ================= SEARCH PARAM ================= */
-const [mediaParam, setMediaParam] = useState<string | null>(null);
+  /* ================= SEARCH PARAM (CLIENT ONLY) ================= */
+  const [mediaParam, setMediaParam] = useState<string | null>(null);
 
-useEffect(() => {
-  if (typeof window === "undefined") return;
-
-  const url = new URL(window.location.href);
-  setMediaParam(url.searchParams.get("media"));
-}, []);
-
+  useEffect(() => {
+    // ten kod wykona się TYLKO w przeglądarce
+    const url = new URL(window.location.href);
+    setMediaParam(url.searchParams.get("media"));
+  }, []);
 
   /* ================= STATE ================= */
   const [index, setIndex] = useState<number | null>(null);
@@ -109,7 +106,7 @@ useEffect(() => {
               <img
                 src={item.thumb ?? item.src}
                 alt="Zdjęcie z wydarzenia"
-                className="w-full h-full object-cover transition-transform hover:scale-105"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
             )}

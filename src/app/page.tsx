@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 /**
@@ -20,14 +19,11 @@ export default function HomePage() {
       >
         {/* 🔰 LOGO KLUBU – LEWY GÓRNY RÓG */}
         <div className="absolute top-6 left-6 z-20">
-          <Image
-            src="/assets/logo/alfa-ckm-logo-v2.png"
-            alt="ALFA-CKM Logo"
-            width={600}
-            height={600}
-            priority
-            className="w-[120px] md:w-[160px] lg:w-[200px] opacity-90"
-          />
+          <img
+  src="/assets/logo/alfa-ckm-logo-v2.png"
+  alt="ALFA-CKM Logo"
+  className="w-[120px] md:w-[160px] lg:w-[200px] opacity-90"
+/>
         </div>
 
         {/* PRZYCIEMNIENIE BANERA */}

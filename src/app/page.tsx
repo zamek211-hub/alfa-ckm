@@ -26,7 +26,7 @@ export default function HomePage() {
             width={600}
             height={600}
             priority
-            className="w-[88px] md:w-[120px] lg:w-[150px] opacity-90"
+            className="w-[120px] md:w-[160px] lg:w-[200px] opacity-90"
           />
         </div>
 

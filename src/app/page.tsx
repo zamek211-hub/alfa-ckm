@@ -21,7 +21,7 @@ export default function HomePage() {
         {/* 🔰 LOGO KLUBU – LEWY GÓRNY RÓG */}
         <div className="absolute top-6 left-6 z-20">
           <Image
-            src="/assets/logo/alfa-ckm-logo.png?v=2"
+            src="/assets/logo/alfa-ckm-logo-v2.png"
             alt="ALFA-CKM Logo"
             width={600}
             height={600}

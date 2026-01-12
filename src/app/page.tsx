@@ -1,3 +1,7 @@
+<div style={{ position: "fixed", top: 0, left: 0, zIndex: 9999, background: "red", color: "white", padding: "8px" }}>
+  TEST HOME PAGE
+</div>
+
 import Link from "next/link";
 
 /**

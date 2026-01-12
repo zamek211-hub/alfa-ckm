@@ -1,17 +1,34 @@
-<div style={{ position: "fixed", top: 0, left: 0, zIndex: 9999, background: "red", color: "white", padding: "8px" }}>
-  TEST HOME PAGE
-</div>
+export const dynamic = "force-dynamic";
 
 import Link from "next/link";
 
 /**
  * HOME – JEDYNA WERSJA (PL)
  * Adres: /
- * STATUS: FINAL (SEO-READY)
+ * STATUS: FINAL (SEO-READY + CACHE-BREAK)
  */
 export default function HomePage() {
+  // niewidoczny cache-buster dla Vercela
+  const buildTime = new Date().toISOString();
+
   return (
     <>
+      {/* ===== TEST CACHE / PLIK ===== */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: 9999,
+          background: "red",
+          color: "white",
+          padding: "8px",
+          fontSize: "12px",
+        }}
+      >
+        TEST HOME PAGE {buildTime}
+      </div>
+
       {/* =======================
           HERO
       ======================= */}
@@ -21,13 +38,19 @@ export default function HomePage() {
           backgroundImage: "url('/assets/baner/baner_bike.jpg')",
         }}
       >
-        {/* 🔰 LOGO KLUBU – LEWY GÓRNY RÓG */}
+        {/* 🔰 LOGO OBRAZOWE – HERO */}
         <div className="absolute top-6 left-6 z-20">
-       <img
-  src="/assets/hero/alfa-ckm-logo.png"
-  alt="ALFA-CKM HERO LOGO"
-  style={{ border: "5px solid red" }}
-/>
+          <img
+            src="/assets/hero/alfa-ckm-logo.png"
+            alt="ALFA-CKM HERO LOGO"
+            className="
+              w-[120px]
+              md:w-[160px]
+              lg:w-[200px]
+              opacity-95
+            "
+            style={{ border: "5px solid red" }}
+          />
         </div>
 
         {/* PRZYCIEMNIENIE BANERA */}
@@ -86,4 +109,3 @@ export default function HomePage() {
     </>
   );
 }
-

@@ -23,13 +23,10 @@ export default function HomePage() {
       >
         {/* 🔰 LOGO KLUBU – LEWY GÓRNY RÓG */}
         <div className="absolute top-6 left-6 z-20">
-        <Image
+       <img
   src="/assets/hero/alfa-ckm-logo.png"
-  alt="ALFA-CKM Logo"
-  width={600}
-  height={600}
-  priority
-  className="w-[120px] md:w-[160px] lg:w-[200px] opacity-90"
+  alt="ALFA-CKM HERO LOGO"
+  style={{ border: "5px solid red" }}
 />
         </div>
 

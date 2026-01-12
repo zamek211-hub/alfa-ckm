@@ -113,12 +113,12 @@ Z wyrazami szacunku`}
           {/* PRAWA KOLUMNA – LOGO */}
           <div className="flex justify-center md:justify-end">
             <Image
-              src="/assets/logo/alfa-ckm-logo.png"
+              src="/assets/logo/alfa-ckm-logo-v2.png"
               alt="ALFA-CKM Logo"
               width={600}
               height={600}
               priority
-              className="w-[120px] md:w-[150px] lg:w-[180px] opacity-90"
+              className="w-[120px] md:w-[160px] lg:w-[200px] opacity-90"
             />
           </div>
 

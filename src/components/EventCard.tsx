@@ -16,12 +16,6 @@ export default function EventCard({ event }: { event: EventItem }) {
           className="object-cover group-hover:scale-105 transition"
           sizes="(max-width: 768px) 100vw, 33vw"
         />
-
-        {event.visibility === "members" && (
-          <span className="absolute top-2 right-2 bg-brand-red text-black text-xs px-2 py-1">
-            MEMBERS
-          </span>
-        )}
       </div>
 
       <div className="p-4 bg-black">

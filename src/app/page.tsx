@@ -5,30 +5,11 @@ import Link from "next/link";
 /**
  * HOME – JEDYNA WERSJA (PL)
  * Adres: /
- * STATUS: FINAL (SEO-READY + CACHE-BREAK)
+ * STATUS: FINAL (SEO-READY)
  */
 export default function HomePage() {
-  // niewidoczny cache-buster dla Vercela
-  const buildTime = new Date().toISOString();
-
   return (
     <>
-      {/* ===== TEST CACHE / PLIK ===== */}
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          zIndex: 9999,
-          background: "red",
-          color: "white",
-          padding: "8px",
-          fontSize: "12px",
-        }}
-      >
-        TEST HOME PAGE {buildTime}
-      </div>
-
       {/* =======================
           HERO
       ======================= */}
@@ -42,14 +23,14 @@ export default function HomePage() {
         <div className="absolute top-6 left-6 z-20">
           <img
             src="/assets/hero/alfa-ckm-logo.png"
-            alt="ALFA-CKM HERO LOGO"
+            alt="ALFA-CKM – Chrześcijański Klub Motocyklowy"
             className="
               w-[120px]
               md:w-[160px]
               lg:w-[200px]
               opacity-95
+              object-contain
             "
-            style={{ border: "5px solid red" }}
           />
         </div>
 
@@ -63,7 +44,7 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-4 text-white/90 uppercase tracking-widest text-sm md:text-base">
-            Wiara • Braterstwo • Wolność na Dwóch Kołach [TEST]
+            Wiara • Braterstwo • Wolność na Dwóch Kołach
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -95,15 +76,13 @@ export default function HomePage() {
         <p className="text-gray-300 leading-relaxed mb-4 text-center">
           <strong>ALFA-CKM</strong> to chrześcijański klub motocyklowy w Polsce,
           który łączy pasję do motocykli z wiarą, odpowiedzialnością i budowaniem
-          autentycznej wspólnoty. Tworzymy przestrzeń dla motocyklistów, którzy
-          chcą jeździć razem, rozmawiać i wzajemnie się wspierać.
+          autentycznej wspólnoty.
         </p>
 
         <p className="text-gray-300 leading-relaxed text-center">
-          Jako klub motocyklowy oparty na wartościach chrześcijańskich
-          organizujemy wspólne wyprawy, wydarzenia i spotkania integracyjne.
-          Motocykle są dla nas narzędziem relacji, rozwoju i życia w zgodzie z
-          wyznawanymi wartościami.
+          Organizujemy wspólne wyprawy, wydarzenia i spotkania integracyjne.
+          Motocykle są dla nas narzędziem relacji, rozwoju i życia w zgodzie
+          z wyznawanymi wartościami.
         </p>
       </section>
     </>

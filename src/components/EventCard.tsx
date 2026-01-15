@@ -27,12 +27,6 @@ export default function EventCard({ event }: { event: EventItem }) {
           {event.date}
           {event.location && ` • ${event.location}`}
         </p>
-
-        {event.type && (
-          <p className="mt-2 text-xs uppercase tracking-wide text-brand-red">
-            {event.type}
-          </p>
-        )}
       </div>
     </Link>
   );

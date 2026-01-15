@@ -6,19 +6,19 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "ALFA-CKM – Chrześcijański Klub Motocyklowy",
+    default: "ALFA-CKM – Chrześcijański Klub Motocyklowy | Polska, Polkowice",
     template: "%s | ALFA-CKM",
   },
   description:
-    "ALFA-CKM to chrześcijański klub motocyklowy zrzeszający pasjonatów motocykli. Wspólne przejazdy, wydarzenia i społeczność oparta na wartościach.",
+    "ALFA-CKM to chrześcijański klub motocyklowy działający w Polsce, wywodzący się z Polkowic. Łączymy pasję do motocykli z wiarą, odpowiedzialnością i wspólnotą.",
   metadataBase: new URL("https://www.alfackm.pl"),
   alternates: {
     canonical: "https://www.alfackm.pl",
   },
   openGraph: {
-    title: "ALFA-CKM – Chrześcijański Klub Motocyklowy",
+    title: "ALFA-CKM – Chrześcijański Klub Motocyklowy | Polska, Polkowice",
     description:
-      "Oficjalna strona chrześcijańskiego klubu motocyklowego ALFA-CKM. Wydarzenia, media, partnerzy i kontakt.",
+      "ALFA-CKM to chrześcijański klub motocyklowy działający w Polsce, wywodzący się z Polkowic. Wspólnota, motocykle i wartości chrześcijańskie.",
     url: "https://www.alfackm.pl",
     siteName: "ALFA-CKM",
     locale: "pl_PL",

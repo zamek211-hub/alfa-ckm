@@ -1,10 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "O nas | ALFA-CKM – Chrześcijański Klub Motocyklowy",
+  title: "O nas – Chrześcijański Klub Motocyklowy ALFA-CKM | Polkowice, Polska",
   description:
-    "ALFA-CKM to chrześcijański klub motocyklowy w Polsce. Łączymy pasję do motocykli, wiarę chrześcijańską i wspólnotę opartą na wartościach.",
+    "Poznaj ALFA-CKM – chrześcijański klub motocyklowy działający w Polsce, wywodzący się z Polkowic. Wspólnota, motocykle i wartości chrześcijańskie.",
 };
+
 
 export default function AboutPage() {
   return (
@@ -16,10 +17,11 @@ export default function AboutPage() {
 
       {/* INTRO */}
       <p className="text-lg text-gray-300 mb-10 leading-relaxed">
-        <strong>ALFA-CKM</strong> to chrześcijański klub motocyklowy działający w
-        Polsce. Jesteśmy wspólnotą ludzi, których łączy pasja do motocykli,
-        wzajemny szacunek oraz wartości wypływające z wiary chrześcijańskiej.
-      </p>
+  <strong>ALFA-CKM</strong> to chrześcijański klub motocyklowy działający w
+  Polsce, wywodzący się z Polkowic. Jesteśmy wspólnotą ludzi, których łączy
+  pasja do motocykli, wzajemny szacunek oraz wartości wypływające z wiary
+  chrześcijańskiej.
+</p>
 
       {/* H2 */}
       <h2 className="text-2xl font-semibold text-brand-gold mb-4">

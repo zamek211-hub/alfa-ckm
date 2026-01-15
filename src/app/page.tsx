@@ -68,23 +68,24 @@ export default function HomePage() {
       {/* =======================
           SEO CONTENT – HOME
       ======================= */}
-      <section className="container mx-auto px-4 py-16 max-w-4xl">
-        <h2 className="text-2xl md:text-3xl font-semibold text-brand-gold mb-4 text-center">
-          Chrześcijański Klub Motocyklowy ALFA-CKM
-        </h2>
+     <section className="container mx-auto px-4 py-16 max-w-4xl">
+  <h2 className="text-2xl md:text-3xl font-semibold text-brand-gold mb-4 text-center">
+    Chrześcijański Klub Motocyklowy ALFA-CKM
+  </h2>
 
-        <p className="text-gray-300 leading-relaxed mb-4 text-center">
-          <strong>ALFA-CKM</strong> to chrześcijański klub motocyklowy w Polsce,
-          który łączy pasję do motocykli z wiarą, odpowiedzialnością i budowaniem
-          autentycznej wspólnoty.
-        </p>
+  <p className="text-gray-300 leading-relaxed mb-4 text-center">
+    <strong>ALFA-CKM</strong> to chrześcijański klub motocyklowy działający w Polsce,
+    wywodzący się z Polkowic, który łączy pasję do motocykli z wiarą,
+    odpowiedzialnością i budowaniem autentycznej wspólnoty motocyklistów.
+  </p>
 
-        <p className="text-gray-300 leading-relaxed text-center">
-          Organizujemy wspólne wyprawy, wydarzenia i spotkania integracyjne.
-          Motocykle są dla nas narzędziem relacji, rozwoju i życia w zgodzie
-          z wyznawanymi wartościami.
-        </p>
-      </section>
+  <p className="text-gray-300 leading-relaxed text-center">
+    Organizujemy wspólne wyprawy, wydarzenia i spotkania integracyjne,
+    uczestniczymy w inicjatywach środowiska motocyklowego oraz rozwijamy relacje
+    oparte na wzajemnym szacunku. Motocykle są dla nas narzędziem relacji,
+    rozwoju i życia w zgodzie z wyznawanymi wartościami chrześcijańskimi.
+  </p>
+</section>
     </>
   );
 }

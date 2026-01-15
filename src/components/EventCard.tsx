@@ -31,3 +31,4 @@ export default function EventCard({ event }: { event: EventItem }) {
     </Link>
   );
 }
+// build sync

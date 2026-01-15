@@ -1,6 +1,8 @@
 "use client";
 
+const SHOW_QR = false;
 import Image from "next/image";
+import { useState } from "react";
 
 /**
  * STRONA: /kontakt
@@ -13,6 +15,8 @@ Odbiorca: Klub ALFA-CKM
 IBAN: XXXX XXXX XXXX XXXX XXXX XXXX
 Tytuł: Składka członkowska / Wsparcie ALFA-CKM`;
 
+  const [copied, setCopied] = useState(false);
+
   return (
     <>
       {/* =======================
@@ -24,7 +28,7 @@ Tytuł: Składka członkowska / Wsparcie ALFA-CKM`;
             Kontakt
           </h1>
           <p className="text-white/80 max-w-3xl text-lg">
-            Chrześcijański Klub Motocyklowy ALFA-CKM Polkowice.  
+            Chrześcijański Klub Motocyklowy ALFA-CKM Polkowice.
             Jeśli chcesz do nas dołączyć, wesprzeć działalność klubu lub
             nawiązać współpracę – zapraszamy do bezpośredniego kontaktu.
           </p>
@@ -122,7 +126,7 @@ Z wyrazami szacunku`}
                 width={600}
                 height={600}
                 priority
-                className="w-[170px] md:w-[210px] lg:w-[240px] opacity-95"
+                className="w-[200px] md:w-[250px] lg:w-[280px] opacity-95"
               />
             </div>
 
@@ -141,35 +145,55 @@ Z wyrazami szacunku`}
               </p>
 
               {/* DANE BANKOWE */}
-              <div className="text-lg space-y-3 font-mono select-text">
-                <p><strong className="text-brand-gold">Bank:</strong> Santander Polkowice</p>
-                <p><strong className="text-brand-gold">Odbiorca:</strong> Klub ALFA-CKM</p>
-                <p><strong className="text-brand-gold">IBAN:</strong> XXXX XXXX XXXX XXXX XXXX XXXX</p>
-                <p><strong className="text-brand-gold">Tytuł:</strong> Składka członkowska / Wsparcie ALFA-CKM</p>
+              <div className="text-xl space-y-3 font-mono select-text">
+                <p>
+                  <strong className="text-brand-gold">Bank:</strong> Santander Polkowice
+                </p>
+                <p>
+                  <strong className="text-brand-gold">Odbiorca:</strong> Klub ALFA-CKM
+                </p>
+                <p>
+                  <strong className="text-brand-gold">IBAN:</strong> XXXX XXXX XXXX XXXX XXXX XXXX
+                </p>
+                <p>
+                  <strong className="text-brand-gold">Tytuł:</strong> Składka członkowska / Wsparcie ALFA-CKM
+                </p>
               </div>
 
-              {/* COPY */}
+              {/* KOPIUJ */}
               <button
-                onClick={() => navigator.clipboard.writeText(bankText)}
+                onClick={() => {
+                  navigator.clipboard.writeText(bankText);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2500);
+                }}
                 className="mt-6 border border-brand-gold text-brand-gold px-6 py-3 text-sm uppercase tracking-widest hover:bg-brand-gold hover:text-black transition"
               >
                 📋 Kopiuj dane do przelewu
               </button>
 
-              {/* QR */}
-              <div className="mt-8 flex flex-col items-center gap-3">
-                <Image
-                  src="/assets/qr/qr-przelew-alfa-ckm.png"
-                  alt="QR kod do przelewu ALFA-CKM"
-                  width={220}
-                  height={220}
-                  className="border border-brand-gold/40 p-2 bg-white rounded"
-                />
-                <p className="text-sm text-white/70 text-center">
-                  Zeskanuj kod QR w aplikacji bankowej,<br />
-                  aby szybko wykonać przelew.
+              {copied && (
+                <p className="mt-3 text-sm text-green-400">
+                  ✅ Dane skopiowane do schowka
                 </p>
-              </div>
+              )}
+
+              {/* QR – WYŁĄCZONY */}
+              {false && (
+                <div className="mt-8 flex flex-col items-center gap-3">
+                  <Image
+                    src="/assets/qr/qr-przelew-alfa-ckm.png"
+                    alt="QR kod do przelewu ALFA-CKM"
+                    width={220}
+                    height={220}
+                    className="border border-brand-gold/40 p-2 bg-white rounded"
+                  />
+                  <p className="text-sm text-white/70 text-center">
+                    Zeskanuj kod QR w aplikacji bankowej,<br />
+                    aby szybko wykonać przelew.
+                  </p>
+                </div>
+              )}
 
               <p className="text-white/60 text-sm mt-6">
                 Dziękujemy za każdą formę wsparcia, zaufanie i pomoc

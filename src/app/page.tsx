@@ -63,7 +63,7 @@ export default function HomePage() {
           </h1>
 
           <p className="mt-4 text-white/90 uppercase tracking-widest text-sm md:text-base">
-            Wiara • Braterstwo • Wolność na Dwóch Kołach
+            Wiara • Braterstwo • Wolność na Dwóch Kołach [TEST]
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">

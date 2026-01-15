@@ -1,129 +1,117 @@
-import Image from "next/image";
+import Link from "next/link";
 
 /**
- * STRONA: /kontakt
- * Kontakt bez formularza – wersja produkcyjna
- * ALFA-CKM
+ * KONTAKT – ALFA-CKM
+ * Strona kontaktowa + dane do wsparcia klubu
+ * STATUS: FINAL (PRODUCTION)
  */
-
 export default function KontaktPage() {
   return (
-    <>
-      {/* PAGE HEADER */}
-      <section className="bg-black border-b border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-gold mb-4">
-            Kontakt
-          </h1>
-          <p className="text-white/80 max-w-2xl text-base sm:text-lg">
-            Chrześcijański Klub Motocyklowy ALFA-CKM Polkowice.  
-            Jeśli chcesz nawiązać kontakt, dowiedzieć się więcej o klubie
-            lub o współpracy – zapraszamy do bezpośredniego kontaktu.
+    <section className="container mx-auto px-4 py-16 max-w-3xl">
+      {/* =======================
+          LOGO
+      ======================= */}
+      <div className="flex justify-center mb-10">
+        <img
+          src="/assets/hero/alfa-ckm-logo.png"
+          alt="ALFA-CKM – Chrześcijański Klub Motocyklowy"
+          className="w-[140px] md:w-[180px] opacity-95 object-contain"
+        />
+      </div>
+
+      {/* =======================
+          NAGŁÓWEK
+      ======================= */}
+      <h1 className="text-3xl md:text-4xl font-bold text-brand-gold text-center mb-8">
+        Kontakt
+      </h1>
+
+      {/* =======================
+          DANE KONTAKTOWE
+      ======================= */}
+      <div className="space-y-4 text-center text-gray-300 mb-12">
+        <p>
+          Jeśli chcesz się z nami skontaktować lub dowiedzieć się więcej o
+          działalności klubu ALFA-CKM, zapraszamy do kontaktu:
+        </p>
+
+        <p>
+          📧 E-mail:{" "}
+          <a
+            href="mailto:alfackm@gmail.com"
+            className="text-brand-gold hover:underline"
+          >
+            alfackm@gmail.com
+          </a>
+        </p>
+
+        <div className="space-y-1">
+          <p>
+            📞 Jan:{" "}
+            <a
+              href="tel:+48XXXXXXXXX"
+              className="text-brand-gold hover:underline"
+            >
+              +48 XXX XXX XXX
+            </a>
+          </p>
+
+          <p>
+            📞 Mariusz:{" "}
+            <a
+              href="tel:+48YYYYYYYYY"
+              className="text-brand-gold hover:underline"
+            >
+              +48 YYY YYY YYY
+            </a>
           </p>
         </div>
-      </section>
+      </div>
 
-      {/* TREŚĆ + LOGO */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      {/* =======================
+          WSPARCIE / SKŁADKI
+      ======================= */}
+      <div className="border border-brand-gold/30 p-6 rounded-md bg-black/40">
+        <h2 className="text-2xl font-semibold text-brand-gold mb-4 text-center">
+          Wsparcie działalności ALFA-CKM
+        </h2>
 
-          {/* LEWA KOLUMNA – TREŚĆ */}
-          <div className="space-y-12">
+        <p className="text-gray-300 text-center mb-6">
+          Jeśli chcesz wesprzeć działalność naszego klubu lub opłacić składkę
+          członkowską, możesz dokonać przelewu na poniższe konto bankowe:
+        </p>
 
-            {/* EMAIL */}
-            <div>
-              <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-2">
-                📧 Kontakt e-mail
-              </h2>
-              <p className="text-white text-lg">
-                <a
-                  href="mailto:alfackm@gmail.com"
-                  className="underline underline-offset-4 hover:text-brand-gold break-all"
-                >
-                  alfackm@gmail.com
-                </a>
-              </p>
-            </div>
+        <ul className="space-y-3 text-gray-300">
+          <li>
+            <strong className="text-brand-gold">Bank:</strong> Santander
+            Polkowice
+          </li>
+          <li>
+            <strong className="text-brand-gold">Odbiorca:</strong> Klub ALFA-CKM
+          </li>
+          <li>
+            <strong className="text-brand-gold">Numer konta (IBAN):</strong>{" "}
+            XXXX
+          </li>
+          <li>
+            <strong className="text-brand-gold">Tytuł przelewu:</strong>{" "}
+            Składka członkowska / Wsparcie ALFA-CKM
+          </li>
+        </ul>
 
-            {/* TELEFON */}
-            <div>
-              <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-2">
-                📞 Kontakt telefoniczny
-              </h2>
-              <p className="text-white text-lg">
-                <a
-                  href="tel:+48667259614"
-                  className="underline underline-offset-4 hover:text-brand-gold"
-                >
-                  +48 667 259 614
-                </a>
-              </p>
-              <p className="text-white/60 text-sm mt-1">
-                Jeśli nie odbierzemy – oddzwonimy.
-              </p>
-            </div>
+        <p className="text-xs text-gray-400 mt-6 text-center">
+          Dziękujemy za każde wsparcie i zaufanie okazywane naszej wspólnocie.
+        </p>
+      </div>
 
-            {/* JAK NAPISAĆ */}
-            <div>
-              <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-4">
-                Jak napisać do ALFA-CKM?
-              </h2>
-              <ul className="space-y-2 text-white/90 list-disc list-inside">
-                <li>Wyślij wiadomość e-mail na adres podany powyżej.</li>
-                <li>Napisz krótko, czego dotyczy Twoja sprawa.</li>
-                <li>Podaj numer telefonu, jeśli oczekujesz kontaktu zwrotnego.</li>
-              </ul>
-            </div>
-
-            {/* WZÓR WIADOMOŚCI */}
-            <div className="bg-black border border-white/20 p-5 sm:p-6 rounded">
-              <h2 className="text-xl sm:text-2xl font-semibold text-brand-gold mb-4">
-                Przykładowa treść wiadomości
-              </h2>
-
-              <pre className="whitespace-pre-wrap text-white/90 text-sm leading-relaxed">
-{`Temat: Kontakt – ALFA-CKM
-
-Dzień dobry,
-
-piszę w sprawie:
-– dołączenia do klubu ALFA-CKM,
-– współpracy,
-– lub innej sprawy związanej z działalnością klubu.
-
-Krótki opis:
-[tu wpisz treść wiadomości]
-
-Numer telefonu do kontaktu (opcjonalnie):
-[twój numer]
-
-Z wyrazami szacunku`}
-              </pre>
-            </div>
-
-            {/* INFO */}
-            <p className="text-white/60 text-sm leading-relaxed">
-              Odpowiadamy na wiadomości możliwie najszybciej.  
-              ALFA-CKM to chrześcijański klub motocyklowy – cenimy kulturę,
-              szacunek i jasną komunikację.
-            </p>
-
-          </div>
-
-          {/* PRAWA KOLUMNA – LOGO */}
-          <div className="flex justify-center md:justify-end">
-            <Image
-              src="/assets/hero/alfa-ckm-logo.png"
-              alt="ALFA-CKM Logo"
-              width={600}
-              height={600}
-              priority
-              className="w-[120px] md:w-[160px] lg:w-[200px] opacity-90"
-            />
-          </div>
-
-        </div>
-      </section>
-    </>
+      {/* =======================
+          POWRÓT
+      ======================= */}
+      <div className="text-center mt-12">
+        <Link href="/" className="text-brand-gold hover:underline text-sm">
+          ← Wróć na stronę główną
+        </Link>
+      </div>
+    </section>
   );
 }

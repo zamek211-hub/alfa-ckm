@@ -117,7 +117,7 @@ Z wyrazami szacunku`}
             {/* LOGO */}
             <div className="flex justify-center">
               <Image
-                src="/assets/logo/alfa-ckm-logo.png"
+                src="/assets/hero/alfa-ckm-logo.png"
                 alt="ALFA-CKM Logo"
                 width={600}
                 height={600}

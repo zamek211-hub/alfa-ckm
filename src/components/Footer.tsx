@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-black border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="grid gap-6 md:grid-cols-3 items-start">
-          
+
           {/* BRAND */}
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -53,12 +53,25 @@ export default function Footer() {
           </div>
 
           {/* INFO */}
-          <div className="text-sm text-white/60 md:text-right">
+          <div className="text-sm text-white/60 md:text-right text-center">
+            {/* krótka linia dekoracyjna */}
+            <div className="mx-auto mb-3 h-px w-24 bg-white/20 md:mx-0 md:ml-auto" />
+
             <p>© {new Date().getFullYear()} ALFA-CKM</p>
+
             <p className="mt-1">
               Wiara • Braterstwo • Wolność
             </p>
+
+            {/* tekst prawny w węższym bloku */}
+            <div className="mt-2 ml-auto max-w-[300px]">
+              <p className="text-xs text-white/40 leading-snug text-left">
+                Logo, nazwa oraz symbolika klubu są chronione prawem
+                i nie mogą być wykorzystywane bez zgody Zarządu.
+              </p>
+            </div>
           </div>
+
         </div>
       </div>
     </footer>

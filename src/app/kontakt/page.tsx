@@ -58,22 +58,35 @@ Tytuł: Składka członkowska / Wsparcie ALFA-CKM`;
             </div>
 
             {/* TELEFONY */}
-            <div>
-              <h2 className="text-2xl font-semibold text-brand-gold mb-2">
-                📞 Kontakt telefoniczny
-              </h2>
-              <p className="text-lg text-white">
-                Jan:{" "}
-                <a href="tel:+48667259614" className="underline">
-                  +48 667 259 614
-                </a>
-              </p>
-              <p className="text-lg text-white">
-                Mariusz: <span className="opacity-80">+48 XXX XXX XXX</span>
-              </p>
-              <p className="text-sm text-white/60 mt-1">
-                Jeśli nie odbierzemy – oddzwonimy.
-              </p>
+              <div>
+              <h2 className="text-2xl font-semibold text-brand-gold mb-3">
+             📞 Kontakt telefoniczny
+             </h2>
+
+             {/* MARIUSZ – wyróżniony */}
+            <div className="border border-brand-gold/60 rounded-lg p-3 mb-4 bg-black/20 shadow-[0_0_8px_rgba(212,175,55,0.25)]">
+             <p className="text-lg text-white font-medium">
+             Mariusz:{" "}
+             <a href="tel:+48783856098" className="underline">
+             +48 783 856 098
+             </a>
+             </p>
+             <p className="flex items-center gap-2 text-sm text-brand-gold mt-1">
+             💳 BLIK dostępny do przelewów bankowych
+             </p>
+             </div>
+
+            {/* JAN */}
+            <p className="text-lg text-white">
+             Jan:{" "}
+             <a href="tel:+48667259614" className="underline">
+            +48 667 259 614
+             </a>
+             </p>
+
+             <p className="text-sm text-white/60 mt-2">
+             Jeśli nie odbierzemy – oddzwonimy.
+             </p>
             </div>
 
             {/* JAK NAPISAĆ */}
@@ -147,13 +160,13 @@ Z wyrazami szacunku`}
               {/* DANE BANKOWE */}
               <div className="text-xl space-y-3 font-mono select-text">
                 <p>
-                  <strong className="text-brand-gold">Bank:</strong> Santander Polkowice
+                  <strong className="text-brand-gold">Bank:</strong> BNP PARIBAS Polkowice
                 </p>
                 <p>
                   <strong className="text-brand-gold">Odbiorca:</strong> Klub ALFA-CKM
                 </p>
                 <p>
-                  <strong className="text-brand-gold">IBAN:</strong> XXXX XXXX XXXX XXXX XXXX XXXX
+                  <strong className="text-brand-gold">IBAN:</strong> 2616 0014 6217 2716 6050 0000 01
                 </p>
                 <p>
                   <strong className="text-brand-gold">Tytuł:</strong> Składka członkowska / Wsparcie ALFA-CKM

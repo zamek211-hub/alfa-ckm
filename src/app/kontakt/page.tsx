@@ -10,9 +10,9 @@ import { useState } from "react";
  */
 
 export default function KontaktPage() {
-  const bankText = `Bank: Santander Polkowice
+  const bankText = `Bank: BNP PARIBAS Polkowice
 Odbiorca: Klub ALFA-CKM
-IBAN: XXXX XXXX XXXX XXXX XXXX XXXX
+IBAN: 2616 0014 6217 2716 6050 0000 01
 Tytuł: Składka członkowska / Wsparcie ALFA-CKM`;
 
   const [copied, setCopied] = useState(false);

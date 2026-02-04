@@ -38,7 +38,7 @@ export default function AdvancedMediaGallery({ items }: AdvancedMediaGalleryProp
     }
   });
 
-  let sortedItems = [...tabItems];
+   const sortedItems = [...tabItems];
   if(activeTab==='oldest') sortedItems.sort((a,b)=>a.id-b.id);
   else if(activeTab==='newest') sortedItems.sort((a,b)=>b.id-a.id);
   else if(activeTab==='popular') sortedItems.sort((a,b)=>(b.likes||0)-(a.likes||0));

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ShareButton from "@/components/ShareButton";
 
 interface MediaItem {
@@ -22,11 +22,8 @@ export default function LightboxPro({
   onChange: (i: number) => void;
   eventSlug: string;
 }) {
-  /* ================= STATE ================= */
+  /* ================= UI STATE ================= */
   const [isPlaying, setIsPlaying] = useState(false);
-  const [views, setViews] = useState(0);
-  const [likes, setLikes] = useState(0);
-  const [liked, setLiked] = useState(false);
 
   const startX = useRef<number | null>(null);
   const viewedRef = useRef<number | null>(null);
@@ -77,29 +74,45 @@ export default function LightboxPro({
     startX.current = null;
   };
 
-  /* ================= VIEWS ================= */
+  /* ================= VIEWS (WRITE) ================= */
   useEffect(() => {
     if (viewedRef.current === index) return;
     viewedRef.current = index;
 
     const key = `views_${eventSlug}_${index}`;
-    const v = Number(localStorage.getItem(key) || 0) + 1;
-    localStorage.setItem(key, String(v));
-    setViews(v);
+    const current = Number(localStorage.getItem(key) || 0);
+    localStorage.setItem(key, String(current + 1));
   }, [index, eventSlug]);
 
-  /* ================= LIKES ================= */
-  useEffect(() => {
-    const key = `likes_${eventSlug}_${index}`;
-    const likedKey = `liked_${eventSlug}_${index}`;
-    setLikes(Number(localStorage.getItem(key) || 0));
-    setLiked(localStorage.getItem(likedKey) === "1");
-  }, [index, eventSlug]);
+  /* ================= DERIVED STATE ================= */
+  const views = useMemo(
+    () =>
+      Number(
+        localStorage.getItem(`views_${eventSlug}_${index}`) || 0
+      ),
+    [index, eventSlug]
+  );
+
+  const likes = useMemo(
+    () =>
+      Number(
+        localStorage.getItem(`likes_${eventSlug}_${index}`) || 0
+      ),
+    [index, eventSlug]
+  );
+
+  const liked = useMemo(
+    () =>
+      localStorage.getItem(
+        `liked_${eventSlug}_${index}`
+      ) === "1",
+    [index, eventSlug]
+  );
 
   const toggleLike = () => {
     const key = `likes_${eventSlug}_${index}`;
     const likedKey = `liked_${eventSlug}_${index}`;
-    let count = Number(localStorage.getItem(key) || 0);
+    let count = likes;
 
     if (liked) {
       count = Math.max(0, count - 1);
@@ -110,8 +123,6 @@ export default function LightboxPro({
     }
 
     localStorage.setItem(key, String(count));
-    setLikes(count);
-    setLiked(!liked);
   };
 
   /* ================= RENDER ================= */

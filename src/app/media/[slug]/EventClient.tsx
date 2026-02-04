@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import LightboxPro from "@/components/LightboxPro";
 
 /**
@@ -19,18 +19,15 @@ export default function EventClient({
   media: MediaItem[];
   slug: string;
 }) {
-  /* ================= STATE ================= */
-  const [index, setIndex] = useState<number | null>(null);
+  /* ================= USER STATE ================= */
+  const [manualIndex, setManualIndex] = useState<number | null>(null);
 
-  /* ================= DEEP LINK =================
-     Czytamy ?media= TYLKO po stronie klienta
-     BEZ useSearchParams (problem SSR)
-  ============================================== */
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+  /* ================= DEEP LINK ================= */
+  const deepLinkedIndex = useMemo(() => {
+    if (typeof window === "undefined") return null;
 
     const param = new URL(window.location.href).searchParams.get("media");
-    if (!param) return;
+    if (!param) return null;
 
     const parsed = Number(param);
 
@@ -39,9 +36,17 @@ export default function EventClient({
       parsed >= 0 &&
       parsed < media.length
     ) {
-      setIndex(parsed);
+      return parsed;
     }
+
+    return null;
   }, [media.length]);
+
+  /* ================= FINAL INDEX =================
+     manualIndex ma PRIORYTET (klik użytkownika)
+  ================================================ */
+  const index =
+    manualIndex !== null ? manualIndex : deepLinkedIndex;
 
   /* ================= URL UPDATE ================= */
   const updateUrl = (newIndex: number | null) => {
@@ -70,20 +75,20 @@ export default function EventClient({
   );
 
   /* ================= STATS ================= */
-  const [totalViews, setTotalViews] = useState(0);
-  const [totalLikes, setTotalLikes] = useState(0);
-
-  useEffect(() => {
+  const { totalViews, totalLikes } = useMemo(() => {
     let views = 0;
     let likes = 0;
 
     media.forEach((_, i) => {
-      views += Number(localStorage.getItem(`views_${slug}_${i}`) || 0);
-      likes += Number(localStorage.getItem(`likes_${slug}_${i}`) || 0);
+      views += Number(
+        localStorage.getItem(`views_${slug}_${i}`) || 0
+      );
+      likes += Number(
+        localStorage.getItem(`likes_${slug}_${i}`) || 0
+      );
     });
 
-    setTotalViews(views);
-    setTotalLikes(likes);
+    return { totalViews: views, totalLikes: likes };
   }, [media, slug]);
 
   /* ================= RENDER ================= */
@@ -96,7 +101,7 @@ export default function EventClient({
             key={i}
             type="button"
             onClick={() => {
-              setIndex(i);
+              setManualIndex(i);
               updateUrl(i);
             }}
             className="relative aspect-square overflow-hidden bg-black"
@@ -140,11 +145,11 @@ export default function EventClient({
           index={index}
           eventSlug={slug}
           onClose={() => {
-            setIndex(null);
+            setManualIndex(null);
             updateUrl(null);
           }}
           onChange={(i) => {
-            setIndex(i);
+            setManualIndex(i);
             updateUrl(i);
           }}
         />

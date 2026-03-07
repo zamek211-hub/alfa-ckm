@@ -9,12 +9,16 @@ export const metadata: Metadata = {
     default: "ALFA-CKM – Chrześcijański Klub Motocyklowy | Polska, Polkowice",
     template: "%s | ALFA-CKM",
   },
+
   description:
     "ALFA-CKM to chrześcijański klub motocyklowy działający w Polsce, wywodzący się z Polkowic. Łączymy pasję do motocykli z wiarą, odpowiedzialnością i wspólnotą.",
+
   metadataBase: new URL("https://www.alfackm.pl"),
+
   alternates: {
     canonical: "https://www.alfackm.pl",
   },
+
   openGraph: {
     title: "ALFA-CKM – Chrześcijański Klub Motocyklowy | Polska, Polkowice",
     description:
@@ -23,6 +27,22 @@ export const metadata: Metadata = {
     siteName: "ALFA-CKM",
     locale: "pl_PL",
     type: "website",
+    images: [
+      {
+        url: "/assets/hero/alfa-ckm-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "ALFA-CKM",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "ALFA-CKM – Chrześcijański Klub Motocyklowy",
+    description:
+      "Oficjalna strona chrześcijańskiego klubu motocyklowego ALFA-CKM.",
+    images: ["/assets/hero/alfa-ckm-logo.png"],
   },
 };
 
@@ -36,7 +56,6 @@ export default function RootLayout({
       <body className="bg-black text-white min-h-screen flex flex-col">
         <Header />
 
-        {/* GŁÓWNA TREŚĆ */}
         <main className="flex-1 w-full">{children}</main>
 
         <Footer />

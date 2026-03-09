@@ -16,7 +16,7 @@ const menu = [
   { name: "Statut", href: "/statut" },
   { name: "Media", href: "/media" },
   { name: "Partnerzy", href: "/partnerzy" },
-  { name: "Members", href: "/members" },
+  { name: "Członkowie", href: "/czlonkowie" },
   { name: "Kontakt", href: "/kontakt" },
 ];
 

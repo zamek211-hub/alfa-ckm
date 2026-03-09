@@ -8,33 +8,38 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.alfackm.pl"),
 
   title: {
-    default: "ALFA-CKM – Chrześcijański Klub Motocyklowy | Polska, Polkowice",
-    template: "%s | ALFA-CKM",
+    default: "ALFA Chrześcijański Klub Motocyklowy",
+    template: "%s | ALFA",
   },
 
   description:
-    "ALFA-CKM to chrześcijański klub motocyklowy działający w Polsce, wywodzący się z Polkowic. Łączymy pasję do motocykli z wiarą, odpowiedzialnością i wspólnotą.",
+    "ALFA Chrześcijański Klub Motocyklowy to wspólnota motocyklistów oparta na wartościach chrześcijańskich. Łączymy pasję do motocykli z wiarą, odpowiedzialnością i braterstwem.",
 
-  keywords: [
-    "ALFA CKM",
-    "chrześcijański klub motocyklowy",
-    "klub motocyklowy Polska",
-    "motocykliści chrześcijańscy",
-    "Polkowice klub motocyklowy",
-  ],
+keywords: [
+  "ALFA klub motocyklowy",
+  "ALFA CKM",
+  "chrześcijański klub motocyklowy",
+  "motocykliści chrześcijańscy",
+  "klub motocyklowy Polska",
+  "klub motocyklowy Polkowice",
+  "motocykliści Polkowice",
+  "klub motocyklowy Dolny Śląsk",
+  "chrześcijańscy motocykliści Polska",
+  "motor klub chrześcijański",
+],
 
-  authors: [{ name: "ALFA-CKM" }],
+  authors: [{ name: "ALFA Chrześcijański Klub Motocyklowy" }],
 
   alternates: {
     canonical: "https://www.alfackm.pl",
   },
 
   openGraph: {
-    title: "ALFA-CKM – Chrześcijański Klub Motocyklowy | Polska, Polkowice",
+    title: "ALFA Chrześcijański Klub Motocyklowy",
     description:
-      "ALFA-CKM to chrześcijański klub motocyklowy działający w Polsce, wywodzący się z Polkowic. Wspólnota, motocykle i wartości chrześcijańskie.",
+      "ALFA Chrześcijański Klub Motocyklowy – wspólnota motocyklistów oparta na wartościach chrześcijańskich.",
     url: "https://www.alfackm.pl",
-    siteName: "ALFA-CKM",
+    siteName: "ALFA",
     locale: "pl_PL",
     type: "website",
     images: [
@@ -42,16 +47,16 @@ export const metadata: Metadata = {
         url: "/assets/og/alfackm-og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "ALFA-CKM Chrześcijański Klub Motocyklowy",
+        alt: "ALFA Chrześcijański Klub Motocyklowy",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "ALFA-CKM – Chrześcijański Klub Motocyklowy",
+    title: "ALFA Chrześcijański Klub Motocyklowy",
     description:
-      "Oficjalna strona chrześcijańskiego klubu motocyklowego ALFA-CKM.",
+      "Oficjalna strona ALFA Chrześcijański Klub Motocyklowy.",
     images: ["/assets/og/alfackm-og-image.jpg"],
   },
 

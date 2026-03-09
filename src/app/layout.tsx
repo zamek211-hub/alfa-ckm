@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.alfackm.pl"),
+
   title: {
     default: "ALFA-CKM – Chrześcijański Klub Motocyklowy | Polska, Polkowice",
     template: "%s | ALFA-CKM",
@@ -13,7 +15,15 @@ export const metadata: Metadata = {
   description:
     "ALFA-CKM to chrześcijański klub motocyklowy działający w Polsce, wywodzący się z Polkowic. Łączymy pasję do motocykli z wiarą, odpowiedzialnością i wspólnotą.",
 
-  metadataBase: new URL("https://www.alfackm.pl"),
+  keywords: [
+    "ALFA CKM",
+    "chrześcijański klub motocyklowy",
+    "klub motocyklowy Polska",
+    "motocykliści chrześcijańscy",
+    "Polkowice klub motocyklowy",
+  ],
+
+  authors: [{ name: "ALFA-CKM" }],
 
   alternates: {
     canonical: "https://www.alfackm.pl",
@@ -29,10 +39,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/hero/alfa-ckm-logo.png",
+        url: "/assets/og/alfackm-og-image.png",
         width: 1200,
         height: 630,
-        alt: "ALFA-CKM",
+        alt: "ALFA-CKM Chrześcijański Klub Motocyklowy",
       },
     ],
   },
@@ -42,7 +52,12 @@ export const metadata: Metadata = {
     title: "ALFA-CKM – Chrześcijański Klub Motocyklowy",
     description:
       "Oficjalna strona chrześcijańskiego klubu motocyklowego ALFA-CKM.",
-    images: ["/assets/hero/alfa-ckm-logo.png"],
+    images: ["/assets/og/alfackm-og-image.png"],
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 

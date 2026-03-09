@@ -9,7 +9,7 @@ export default function sitemap() {
     "/kontakt",
     "/media",
     "/partnerzy",
-    "/members",
+    "/członkowie",
     "/statut",
   ];
 

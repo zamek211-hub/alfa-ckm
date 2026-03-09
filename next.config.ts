@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
         destination: "/czlonkowie",
         permanent: true,
       },
+      {
+        source: "/member",
+        destination: "/czlonkowie",
+        permanent: true,
+      },
+      {
+        source: "/members/:path*",
+        destination: "/czlonkowie",
+        permanent: true,
+      },
     ];
   },
 

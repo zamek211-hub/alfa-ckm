@@ -8,25 +8,25 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.alfackm.pl"),
 
   title: {
-    default: "ALFA Chrześcijański Klub Motocyklowy",
+    default: "ALFA Chrześcijański Klub Motocyklowy | Polkowice",
     template: "%s | ALFA",
   },
 
   description:
-    "ALFA Chrześcijański Klub Motocyklowy to wspólnota motocyklistów oparta na wartościach chrześcijańskich. Łączymy pasję do motocykli z wiarą, odpowiedzialnością i braterstwem.",
+    "ALFA Chrześcijański Klub Motocyklowy z Polkowic to wspólnota motocyklistów oparta na wartościach chrześcijańskich. Łączymy pasję do motocykli z wiarą, odpowiedzialnością i braterstwem.",
 
-keywords: [
-  "ALFA klub motocyklowy",
-  "ALFA CKM",
-  "chrześcijański klub motocyklowy",
-  "motocykliści chrześcijańscy",
-  "klub motocyklowy Polska",
-  "klub motocyklowy Polkowice",
-  "motocykliści Polkowice",
-  "klub motocyklowy Dolny Śląsk",
-  "chrześcijańscy motocykliści Polska",
-  "motor klub chrześcijański",
-],
+  keywords: [
+    "ALFA klub motocyklowy",
+    "ALFA CKM",
+    "chrześcijański klub motocyklowy",
+    "motocykliści chrześcijańscy",
+    "klub motocyklowy Polska",
+    "klub motocyklowy Polkowice",
+    "motocykliści Polkowice",
+    "klub motocyklowy Dolny Śląsk",
+    "chrześcijańscy motocykliści Polska",
+    "motor klub chrześcijański",
+  ],
 
   authors: [{ name: "ALFA Chrześcijański Klub Motocyklowy" }],
 
@@ -35,7 +35,7 @@ keywords: [
   },
 
   openGraph: {
-    title: "ALFA Chrześcijański Klub Motocyklowy",
+    title: "ALFA Chrześcijański Klub Motocyklowy | Polkowice",
     description:
       "ALFA Chrześcijański Klub Motocyklowy – wspólnota motocyklistów oparta na wartościach chrześcijańskich.",
     url: "https://www.alfackm.pl",
@@ -71,9 +71,33 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "ALFA Chrześcijański Klub Motocyklowy",
+    url: "https://www.alfackm.pl",
+    logo: "https://www.alfackm.pl/assets/logo/logo.png",
+    description:
+      "ALFA Chrześcijański Klub Motocyklowy z Polkowic to wspólnota motocyklistów oparta na wartościach chrześcijańskich.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Polkowice",
+      addressCountry: "PL",
+    },
+    sameAs: [
+      "https://www.facebook.com/",
+      "https://www.instagram.com/",
+    ],
+  };
+
   return (
     <html lang="pl">
       <body className="bg-black text-white min-h-screen flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+
         <Header />
 
         <main className="flex-1 w-full">{children}</main>

@@ -1,19 +1,19 @@
 import Link from "next/link";
 
 /**
- * STRONA: /members
+ * STRONA: /czlonkowie
  * Strefa wewnętrzna – placeholder pod przyszłą autoryzację
  * Header i Footer są GLOBALNE (layout.tsx) – TU ICH NIE DOTYKAMY
  */
 
-export default function MembersPage() {
+export default function CzlonkowiePage() {
   return (
     <>
       {/* ================= PAGE HEADER ================= */}
       <section className="w-full bg-black border-b border-white/10">
         <div className="w-full px-4 sm:px-6 lg:max-w-6xl lg:mx-auto py-20 text-center">
           <h1 className="text-brand-gold text-4xl md:text-5xl font-bold tracking-wide">
-            MEMBERS
+            CZŁONKOWIE
           </h1>
 
           <p className="mt-4 text-white/80 max-w-2xl mx-auto">
@@ -36,7 +36,7 @@ export default function MembersPage() {
 
               <p className="text-white/80 leading-relaxed mb-4">
                 Sekcja{" "}
-                <span className="text-white font-medium">Members</span> jest
+                <span className="text-white font-medium">Członkowie</span> jest
                 przeznaczona wyłącznie dla pełnoprawnych członków klubu
                 ALFA-CKM. Dostęp do tej strefy wymaga autoryzacji.
               </p>
@@ -56,11 +56,11 @@ export default function MembersPage() {
             {/* ---------- AKCJE ---------- */}
             <div className="border border-white/10 p-8">
               <h3 className="text-xl font-semibold text-brand-gold mb-4">
-                Dostęp do Members
+                Dostęp do strefy członków
               </h3>
 
               <p className="text-white/80 mb-6">
-                Dostęp do strefy Members jest obecnie ograniczony.
+                Dostęp do strefy członków jest obecnie ograniczony.
                 Funkcja logowania zostanie uruchomiona w kolejnym etapie
                 rozwoju strony.
               </p>

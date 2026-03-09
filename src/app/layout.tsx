@@ -72,23 +72,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "ALFA Chrześcijański Klub Motocyklowy",
-    url: "https://www.alfackm.pl",
-    logo: "https://www.alfackm.pl/assets/logo/logo.png",
-    description:
-      "ALFA Chrześcijański Klub Motocyklowy z Polkowic to wspólnota motocyklistów oparta na wartościach chrześcijańskich.",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Polkowice",
-      addressCountry: "PL",
-    },
-    sameAs: [
-      "https://www.facebook.com/",
-      "https://www.instagram.com/",
-    ],
-  };
+     "@context": "https://schema.org",
+ "@type": "Organization",
+ "name": "ALFA Chrześcijański Klub Motocyklowy",
+ "url": "https://www.alfackm.pl",
+ "logo": "https://www.alfackm.pl/assets/logo/logo.png",
+ "description": "ALFA Chrześcijański Klub Motocyklowy z Polkowic to wspólnota motocyklistów oparta na wartościach chrześcijańskich.",
+ "address": {
+   "@type": "PostalAddress",
+   "addressLocality": "Polkowice",
+   "addressRegion": "Dolnośląskie",
+   "addressCountry": "PL"
+ },
+ "areaServed": "Polska",
+ "sameAs": [
+   "https://www.facebook.com/",
+   "https://www.instagram.com/"
+ ]
+}
 
   return (
     <html lang="pl">

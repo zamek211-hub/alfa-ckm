@@ -71,25 +71,38 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const schema = {
-     "@context": "https://schema.org",
- "@type": "Organization",
- "name": "ALFA Chrześcijański Klub Motocyklowy",
- "url": "https://www.alfackm.pl",
- "logo": "https://www.alfackm.pl/assets/logo/logo.png",
- "description": "ALFA Chrześcijański Klub Motocyklowy z Polkowic to wspólnota motocyklistów oparta na wartościach chrześcijańskich.",
- "address": {
-   "@type": "PostalAddress",
-   "addressLocality": "Polkowice",
-   "addressRegion": "Dolnośląskie",
-   "addressCountry": "PL"
- },
- "areaServed": "Polska",
- "sameAs": [
-   "https://www.facebook.com/",
-   "https://www.instagram.com/"
- ]
-}
+  const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "ALFA Chrześcijański Klub Motocyklowy",
+    url: "https://www.alfackm.pl",
+    logo: "https://www.alfackm.pl/assets/logo/logo.png",
+    description:
+      "ALFA Chrześcijański Klub Motocyklowy z Polkowic to wspólnota motocyklistów oparta na wartościach chrześcijańskich.",
+    sameAs: [
+      "https://www.facebook.com/",
+      "https://www.instagram.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "ALFA Chrześcijański Klub Motocyklowy",
+    url: "https://www.alfackm.pl",
+    image: "https://www.alfackm.pl/assets/logo/logo.png",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Polkowice",
+      addressRegion: "Dolnośląskie",
+      addressCountry: "PL"
+    },
+    areaServed: {
+      "@type": "Place",
+      name: "Polska"
+    }
+  }
+];
 
   return (
     <html lang="pl">

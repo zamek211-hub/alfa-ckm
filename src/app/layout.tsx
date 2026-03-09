@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/assets/og/alfackm-og-image.png",
+        url: "/assets/og/alfackm-og-image.jpg",
         width: 1200,
         height: 630,
         alt: "ALFA-CKM Chrześcijański Klub Motocyklowy",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "ALFA-CKM – Chrześcijański Klub Motocyklowy",
     description:
       "Oficjalna strona chrześcijańskiego klubu motocyklowego ALFA-CKM.",
-    images: ["/assets/og/alfackm-og-image.png"],
+    images: ["/assets/og/alfackm-og-image.jpg"],
   },
 
   icons: {

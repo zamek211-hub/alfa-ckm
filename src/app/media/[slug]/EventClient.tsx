@@ -67,11 +67,11 @@ export default function EventClient({
 
       {index !== null && (
         <LightboxPro
-          items={media}
-          index={index} 
-          onClose={closeWithFullscreen}
-          onChange={setIndex}
-        />
+  items={media}
+  index={index}
+  onClose={closeWithFullscreen}
+  onChange={setIndex}
+/>
       )}
     </>
   );

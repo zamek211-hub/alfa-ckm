@@ -20,7 +20,6 @@ export default function LightboxPro({
   index: number;
   onClose: () => void;
   onChange: (i: number) => void;
-  eventSlug?: string;
 }) {
 
   const slug = eventSlug ?? "event";

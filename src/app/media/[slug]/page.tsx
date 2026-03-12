@@ -115,39 +115,39 @@ export default async function EventPage({
 
       <EventClient media={media} slug={slug} />
 
-      {/* MAPA WYDARZENIA */}
+     {/* MAPA WYDARZENIA */}
 
-      <div className="mt-20">
+<div className="mt-20">
 
-        <h2 className="text-2xl font-bold text-center mb-6">
-          Trasa wydarzenia
-        </h2>
+  <h2 className="text-2xl font-bold text-center mb-6">
+    Trasa wydarzenia
+  </h2>
 
-        <EventMap points={routePoints} />
-          points={[
-            {
-              lat: 49.426,
-              lng: 22.486,
-              title: "Start – Bieszczady",
-              image: "/media/2025/bieszczady/1.jpg"
-            },
-            {
-              lat: 49.512,
-              lng: 22.714,
-              title: "Przystanek widokowy",
-              image: "/media/2025/bieszczady/3.jpg"
-            },
-            {
-              lat: 49.365,
-              lng: 22.593,
-              title: "Meta wyprawy",
-              image: "/media/2025/bieszczady/5.jpg"
-            }
-          ]}
-        />
+  <EventMap
+    points={[
+      {
+        lat: 49.426,
+        lng: 22.486,
+        title: "Start – Bieszczady",
+        image: "/media/2025/bieszczady/1.jpg",
+      },
+      {
+        lat: 49.512,
+        lng: 22.714,
+        title: "Przystanek widokowy",
+        image: "/media/2025/bieszczady/3.jpg",
+      },
+      {
+        lat: 49.365,
+        lng: 22.593,
+        title: "Meta wyprawy",
+        image: "/media/2025/bieszczady/5.jpg",
+      },
+    ]}
+  />
 
-      </div>
+</div>
 
-    </section>
-  );
+</section>
+);
 }

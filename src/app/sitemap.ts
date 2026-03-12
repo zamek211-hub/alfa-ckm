@@ -1,27 +1,24 @@
-import { events } from "@/data/events";
+import { getAllEvents } from "@/lib/events";
 
 export default function sitemap() {
   const baseUrl = "https://www.alfackm.pl";
 
-  const staticPages = [
-    "",
-    "/o-nas",
-    "/kontakt",
-    "/media",
-    "/partnerzy",
-    "/członkowie",
-    "/statut",
-  ];
+  const events = getAllEvents();
 
-  const staticUrls = staticPages.map((path) => ({
-    url: `${baseUrl}${path}`,
+  const eventPages = events.map((event) => ({
+    url: `${baseUrl}/media/${event.slug}`,
     lastModified: new Date(),
   }));
 
-  const eventUrls = events.map((event) => ({
-    url: `${baseUrl}/media/${event.slug}`,
-    lastModified: new Date(event.date),
-  }));
-
-  return [...staticUrls, ...eventUrls];
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/media`,
+      lastModified: new Date(),
+    },
+    ...eventPages,
+  ];
 }

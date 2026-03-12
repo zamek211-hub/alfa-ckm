@@ -65,14 +65,12 @@ export default function EventClient({
 
       <GalleryStats media={media} slug={slug} />
 
-      {index !== null && (
-        <LightboxPro
-          items={media}
-          index={index}
-          eventSlug={slug}
-          onClose={closeWithFullscreen}
-          onChange={setIndex}
-        />
+      <LightboxPro
+      items={media}
+      index={index}
+      onClose={closeWithFullscreen}
+      onChange={setIndex}
+/>
       )}
     </>
   );

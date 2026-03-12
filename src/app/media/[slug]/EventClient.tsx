@@ -70,7 +70,7 @@ export default function EventClient({
       index={index}
       onClose={closeWithFullscreen}
       onChange={setIndex}
-/>
+     />
       )}
     </>
   );

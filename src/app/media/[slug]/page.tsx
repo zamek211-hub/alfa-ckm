@@ -96,8 +96,10 @@ export default async function EventPage({
   const [season, ...folderParts] = slug.split("-");
   const folder = folderParts.join("-");
 
-  const media = loadGallery(`media/${season}/${folder}`);
-  const routePoints = extractRoute(`media/${season}/${folder}`);
+  //const media = loadGallery(`media/${season}/${folder}`);
+    const media = [];
+  //const routePoints = extractRoute(`media/${season}/${folder}`);
+     onst routePoints = [];
 
   return (
     <section className="container mx-auto px-4 py-12">

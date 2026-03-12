@@ -37,7 +37,7 @@ export default function EventClient({
   ======================== */
 
   const openWithFullscreen = (i: number) => {
-    if (index !== null) return; // blokuje otwieranie gdy lightbox działa
+    if (index !== null) return;
     enterFullscreen();
     open(i);
   };
@@ -65,12 +65,14 @@ export default function EventClient({
 
       <GalleryStats media={media} slug={slug} />
 
-      <LightboxPro
-      items={media}
-      index={index}
-      onClose={closeWithFullscreen}
-      onChange={setIndex}
-     />
+      {index !== null && (
+        <LightboxPro
+          items={media}
+          index={index}
+          eventSlug={slug}
+          onClose={closeWithFullscreen}
+          onChange={setIndex}
+        />
       )}
     </>
   );

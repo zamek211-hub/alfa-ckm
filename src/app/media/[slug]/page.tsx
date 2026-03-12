@@ -27,7 +27,6 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-
   const { slug } = params;
 
   const events = getAllEvents();
@@ -85,7 +84,6 @@ export default async function EventPage({
 }: {
   params: { slug: string };
 }) {
-
   const { slug } = params;
 
   const events = getAllEvents();
@@ -99,35 +97,27 @@ export default async function EventPage({
   const folder = folderParts.join("-");
 
   const media = loadGallery(`media/${season}/${folder}`);
-
-  /* GPS trasa z EXIF zdjęć */
   const routePoints = extractRoute(`media/${season}/${folder}`);
 
   return (
     <section className="container mx-auto px-4 py-12">
-
       <h1 className="text-4xl md:text-5xl font-bold text-brand-gold mb-10 text-center">
         {event.title}
       </h1>
 
       {/* GALERIA */}
-
       <EventClient media={media} slug={slug} />
 
       {/* MAPA WYDARZENIA */}
-
       {routePoints.length > 0 && (
         <div className="mt-20">
-
           <h2 className="text-2xl font-bold text-center mb-6">
             Trasa wydarzenia
           </h2>
 
           <EventMap points={routePoints} />
-
         </div>
       )}
-
     </section>
   );
 }

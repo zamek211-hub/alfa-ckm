@@ -20,17 +20,21 @@ export default function LightboxPro({
   index: number;
   onClose: () => void;
   onChange: (i: number) => void;
-  eventSlug: string;
+  eventSlug?: string;
 }) {
-  /* ================= UI STATE ================= */
-  const [isPlaying, setIsPlaying] = useState(false);
 
+  const slug = eventSlug ?? "event";
+
+  /* ================= UI STATE ================= */
+
+  const [isPlaying, setIsPlaying] = useState(false);
   const startX = useRef<number | null>(null);
   const viewedRef = useRef<number | null>(null);
 
   const item = items[index];
 
   /* ================= SHARE URL ================= */
+
   const shareUrl =
     typeof window !== "undefined"
       ? (() => {
@@ -41,6 +45,7 @@ export default function LightboxPro({
       : "";
 
   /* ================= NAV ================= */
+
   const prev = () => {
     setIsPlaying(false);
     onChange(index === 0 ? items.length - 1 : index - 1);
@@ -52,6 +57,7 @@ export default function LightboxPro({
   };
 
   /* ================= PLAY (SLIDESHOW) ================= */
+
   useEffect(() => {
     if (!isPlaying) return;
 
@@ -63,55 +69,59 @@ export default function LightboxPro({
   }, [isPlaying, index, items.length, onChange]);
 
   /* ================= SWIPE ================= */
+
   const onTouchStart = (e: React.TouchEvent) => {
     startX.current = e.touches[0].clientX;
   };
 
   const onTouchEnd = (e: React.TouchEvent) => {
     if (startX.current === null) return;
+
     const diff = startX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 60) diff > 0 ? next() : prev();
+
+    if (Math.abs(diff) > 60) {
+      diff > 0 ? next() : prev();
+    }
+
     startX.current = null;
   };
 
   /* ================= VIEWS (WRITE) ================= */
+
   useEffect(() => {
     if (viewedRef.current === index) return;
+
     viewedRef.current = index;
 
-    const key = `views_${eventSlug}_${index}`;
+    const key = `views_${slug}_${index}`;
     const current = Number(localStorage.getItem(key) || 0);
+
     localStorage.setItem(key, String(current + 1));
-  }, [index, eventSlug]);
+
+  }, [index, slug]);
 
   /* ================= DERIVED STATE ================= */
+
   const views = useMemo(
-    () =>
-      Number(
-        localStorage.getItem(`views_${eventSlug}_${index}`) || 0
-      ),
-    [index, eventSlug]
+    () => Number(localStorage.getItem(`views_${slug}_${index}`) || 0),
+    [index, slug]
   );
 
   const likes = useMemo(
-    () =>
-      Number(
-        localStorage.getItem(`likes_${eventSlug}_${index}`) || 0
-      ),
-    [index, eventSlug]
+    () => Number(localStorage.getItem(`likes_${slug}_${index}`) || 0),
+    [index, slug]
   );
 
   const liked = useMemo(
-    () =>
-      localStorage.getItem(
-        `liked_${eventSlug}_${index}`
-      ) === "1",
-    [index, eventSlug]
+    () => localStorage.getItem(`liked_${slug}_${index}`) === "1",
+    [index, slug]
   );
 
   const toggleLike = () => {
-    const key = `likes_${eventSlug}_${index}`;
-    const likedKey = `liked_${eventSlug}_${index}`;
+
+    const key = `likes_${slug}_${index}`;
+    const likedKey = `liked_${slug}_${index}`;
+
     let count = likes;
 
     if (liked) {
@@ -126,12 +136,14 @@ export default function LightboxPro({
   };
 
   /* ================= RENDER ================= */
+
   return (
     <div
       className="fixed inset-0 bg-black/90 z-50 flex flex-col justify-center"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
+
       {/* CLOSE */}
       <button
         onClick={onClose}
@@ -171,6 +183,7 @@ export default function LightboxPro({
       >
         ‹
       </button>
+
       <button
         onClick={next}
         className="absolute right-4 top-1/2 -translate-y-1/2 text-white text-5xl hidden md:block"
@@ -180,6 +193,7 @@ export default function LightboxPro({
 
       {/* CONTENT */}
       <div className="flex-1 flex items-center justify-center">
+
         {item.type === "image" && (
           <img
             src={item.src}
@@ -196,7 +210,9 @@ export default function LightboxPro({
             className="max-h-[80vh] max-w-[90vw]"
           />
         )}
+
       </div>
+
     </div>
   );
 }

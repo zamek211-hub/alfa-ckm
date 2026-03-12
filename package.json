@@ -3,16 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "set NEXT_DISABLE_TURBOPACK=1 && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "thumbs": "node scripts/generate-thumbs.js",
+    "images": "node scripts/generate-web-images.js"
   },
   "dependencies": {
+    "exif-parser": "^0.1.12",
+    "framer-motion": "^12.35.2",
+    "leaflet": "^1.9.4",
     "next": "^16.1.6",
     "nodemailer": "^7.0.12",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "react-leaflet": "^5.0.0",
+    "react-window": "^2.2.7",
+    "react-zoom-pan-pinch": "^3.7.0",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -1,16 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import LightboxPro from "@/components/LightboxPro";
-
-/**
- * Typ pojedynczego elementu media
- */
-interface MediaItem {
-  type: "image" | "mp4";
-  src: string;
-  thumb?: string;
-}
+import { MediaItem } from "@/types/media";
+import GalleryGrid from "@/components/gallery/GalleryGrid";
+import GalleryStats from "@/components/gallery/GalleryStats";
+import LightboxPro from "@/components/gallery/LightboxPro";
+import { useLightbox } from "@/hooks/useLightbox";
+import { useScrollRestore } from "@/hooks/useScrollRestore";
+import { enterFullscreen, exitFullscreen } from "@/hooks/useFullscreen";
 
 export default function EventClient({
   media,
@@ -19,139 +15,63 @@ export default function EventClient({
   media: MediaItem[];
   slug: string;
 }) {
-  /* ================= USER STATE ================= */
-  const [manualIndex, setManualIndex] = useState<number | null>(null);
 
-  /* ================= DEEP LINK ================= */
-  const deepLinkedIndex = useMemo(() => {
-    if (typeof window === "undefined") return null;
+  /* ========================
+     SAFETY CHECK
+  ======================== */
 
-    const param = new URL(window.location.href).searchParams.get("media");
-    if (!param) return null;
+  if (!media || media.length === 0) {
+    return (
+      <p className="text-center text-gray-400">
+        Brak zdjęć w tej galerii.
+      </p>
+    );
+  }
 
-    const parsed = Number(param);
+  const { index, open, close, setIndex } = useLightbox();
 
-    if (
-      Number.isInteger(parsed) &&
-      parsed >= 0 &&
-      parsed < media.length
-    ) {
-      return parsed;
-    }
+  useScrollRestore(`gallery-${slug}`);
 
-    return null;
-  }, [media.length]);
+  /* ========================
+     FULLSCREEN HANDLERS
+  ======================== */
 
-  /* ================= FINAL INDEX =================
-     manualIndex ma PRIORYTET (klik użytkownika)
-  ================================================ */
-  const index =
-    manualIndex !== null ? manualIndex : deepLinkedIndex;
-
-  /* ================= URL UPDATE ================= */
-  const updateUrl = (newIndex: number | null) => {
-    if (typeof window === "undefined") return;
-
-    const url = new URL(window.location.href);
-
-    if (newIndex === null) {
-      url.searchParams.delete("media");
-    } else {
-      url.searchParams.set("media", String(newIndex));
-    }
-
-    window.history.replaceState({}, "", url.toString());
+  const openWithFullscreen = (i: number) => {
+    if (index !== null) return; // blokuje otwieranie gdy lightbox działa
+    enterFullscreen();
+    open(i);
   };
 
-  /* ================= COUNTS ================= */
-  const imagesCount = useMemo(
-    () => media.filter((m) => m.type === "image").length,
-    [media]
-  );
+  const closeWithFullscreen = () => {
+    exitFullscreen();
+    close();
+  };
 
-  const videosCount = useMemo(
-    () => media.filter((m) => m.type === "mp4").length,
-    [media]
-  );
+  /* ========================
+     GRID OPEN HANDLER
+  ======================== */
 
-  /* ================= STATS ================= */
-  const { totalViews, totalLikes } = useMemo(() => {
-    let views = 0;
-    let likes = 0;
+  const handleOpen = (i: number) => {
+    if (index !== null) return;
+    openWithFullscreen(i);
+  };
 
-    media.forEach((_, i) => {
-      views += Number(
-        localStorage.getItem(`views_${slug}_${i}`) || 0
-      );
-      likes += Number(
-        localStorage.getItem(`likes_${slug}_${i}`) || 0
-      );
-    });
-
-    return { totalViews: views, totalLikes: likes };
-  }, [media, slug]);
-
-  /* ================= RENDER ================= */
   return (
     <>
-      {/* GRID */}
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
-        {media.map((item, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => {
-              setManualIndex(i);
-              updateUrl(i);
-            }}
-            className="relative aspect-square overflow-hidden bg-black"
-          >
-            {item.type === "image" && (
-              <img
-                src={item.thumb ?? item.src}
-                alt="Zdjęcie z wydarzenia"
-                className="w-full h-full object-cover transition-transform hover:scale-105"
-                loading="lazy"
-              />
-            )}
+      <GalleryGrid
+        media={media}
+        onOpen={handleOpen}
+      />
 
-            {item.type === "mp4" && (
-              <>
-                <img
-                  src={item.thumb ?? "/assets/video-thumb.jpg"}
-                  alt="Video z wydarzenia"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <span className="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl">
-                  ▶
-                </span>
-              </>
-            )}
-          </button>
-        ))}
-      </div>
+      <GalleryStats media={media} slug={slug} />
 
-      {/* STATS */}
-      <div className="mt-6 text-sm text-center text-brand-gold/80">
-        {imagesCount} zdjęć · {videosCount} video · {totalViews} wyświetleń ·{" "}
-        {totalLikes} polubień
-      </div>
-
-      {/* LIGHTBOX */}
       {index !== null && (
         <LightboxPro
           items={media}
           index={index}
           eventSlug={slug}
-          onClose={() => {
-            setManualIndex(null);
-            updateUrl(null);
-          }}
-          onChange={(i) => {
-            setManualIndex(i);
-            updateUrl(i);
-          }}
+          onClose={closeWithFullscreen}
+          onChange={setIndex}
         />
       )}
     </>

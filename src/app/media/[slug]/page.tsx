@@ -1,18 +1,36 @@
-import { events } from "@/data/events";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { loadGallery } from "@/lib/gallery";
 import EventClient from "./EventClient";
+import { getAllEvents } from "@/lib/events";
+import EventMap from "@/components/EventMap";
+import { extractRoute } from "@/lib/exifRoute";
 
 /* =======================
-   METADATA (SEO + CANONICAL)
+   STATIC PARAMS (SSG)
+======================= */
+
+export function generateStaticParams() {
+  const events = getAllEvents();
+
+  return events.map((event) => ({
+    slug: event.slug,
+  }));
+}
+
+/* =======================
+   METADATA (SEO)
 ======================= */
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }): Promise<Metadata> {
-  const { slug } = await params;
+
+  const { slug } = params;
+
+  const events = getAllEvents();
 
   const event = events.find((e) => e.slug === slug);
 
@@ -27,9 +45,7 @@ export async function generateMetadata({
   }
 
   const title = `${event.title} | ALFA-CKM`;
-  const description =
-    event.description ??
-    `Relacja z wydarzenia ${event.title}.`;
+  const description = `Relacja z wydarzenia ${event.title}.`;
 
   return {
     title,
@@ -68,9 +84,12 @@ export async function generateMetadata({
 export default async function EventPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+
+  const { slug } = params;
+
+  const events = getAllEvents();
 
   const event = events.find((e) => e.slug === slug);
 
@@ -78,13 +97,57 @@ export default async function EventPage({
     notFound();
   }
 
+  const [season, ...folderParts] = slug.split("-");
+  const folder = folderParts.join("-");
+
+  const media = loadGallery(`media/${season}/${folder}`);
+  const routePoints = extractRoute(`media/${season}/${folder}`);
+
   return (
+
     <section className="container mx-auto px-4 py-12">
+
       <h1 className="text-4xl md:text-5xl font-bold text-brand-gold mb-10 text-center">
         {event.title}
       </h1>
 
-      <EventClient media={event.media} slug={event.slug} />
+      {/* GALERIA */}
+
+      <EventClient media={media} slug={slug} />
+
+      {/* MAPA WYDARZENIA */}
+
+      <div className="mt-20">
+
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Trasa wydarzenia
+        </h2>
+
+        <EventMap points={routePoints} />
+          points={[
+            {
+              lat: 49.426,
+              lng: 22.486,
+              title: "Start – Bieszczady",
+              image: "/media/2025/bieszczady/1.jpg"
+            },
+            {
+              lat: 49.512,
+              lng: 22.714,
+              title: "Przystanek widokowy",
+              image: "/media/2025/bieszczady/3.jpg"
+            },
+            {
+              lat: 49.365,
+              lng: 22.593,
+              title: "Meta wyprawy",
+              image: "/media/2025/bieszczady/5.jpg"
+            }
+          ]}
+        />
+
+      </div>
+
     </section>
   );
 }

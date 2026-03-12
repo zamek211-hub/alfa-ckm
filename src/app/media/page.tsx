@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import Link from "next/link";
-import { events } from "@/data/events";
+import { getAllEvents } from "@/lib/events";
 import { Metadata } from "next";
 
 /* =======================
@@ -45,20 +45,28 @@ export const metadata: Metadata = {
 ======================= */
 
 export default function MediaPage() {
+
+  const events = getAllEvents();
+
   return (
     <section className="container mx-auto px-4 py-12">
+
       <h1 className="text-4xl md:text-5xl font-bold text-brand-gold mb-12 text-center">
         Media / Wydarzenia
       </h1>
 
       <div className="grid md:grid-cols-3 gap-6">
+
         {events.map((event) => (
+
           <Link
             key={event.slug}
             href={`/media/${event.slug}`}
             className="group block bg-black border border-brand-gold/30 hover:border-brand-gold transition"
           >
+
             <div className="relative aspect-video overflow-hidden">
+
               <img
                 src={event.cover}
                 alt={event.title}
@@ -66,27 +74,27 @@ export default function MediaPage() {
                 loading="lazy"
                 decoding="async"
               />
+
             </div>
 
             <div className="p-4 space-y-2">
+
               <h2 className="text-lg font-semibold text-white">
                 {event.title}
               </h2>
 
               <p className="text-sm text-brand-gold/70">
-                {event.date}
-                {event.location && ` • ${event.location}`}
+                sezon {event.season}
               </p>
 
-              {event.description && (
-                <p className="text-sm text-gray-300 line-clamp-3">
-                  {event.description}
-                </p>
-              )}
             </div>
+
           </Link>
+
         ))}
+
       </div>
+
     </section>
   );
 }

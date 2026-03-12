@@ -68,8 +68,7 @@ export default function EventClient({
       {index !== null && (
         <LightboxPro
           items={media}
-          index={index}
-          eventSlug={slug}
+          index={index} 
           onClose={closeWithFullscreen}
           onChange={setIndex}
         />

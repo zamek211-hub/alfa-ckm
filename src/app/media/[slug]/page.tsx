@@ -31,7 +31,6 @@ export async function generateMetadata({
   const { slug } = params;
 
   const events = getAllEvents();
-
   const event = events.find((e) => e.slug === slug);
 
   if (!event) {
@@ -90,7 +89,6 @@ export default async function EventPage({
   const { slug } = params;
 
   const events = getAllEvents();
-
   const event = events.find((e) => e.slug === slug);
 
   if (!event) {
@@ -101,10 +99,11 @@ export default async function EventPage({
   const folder = folderParts.join("-");
 
   const media = loadGallery(`media/${season}/${folder}`);
+
+  /* GPS trasa z EXIF zdjęć */
   const routePoints = extractRoute(`media/${season}/${folder}`);
 
   return (
-
     <section className="container mx-auto px-4 py-12">
 
       <h1 className="text-4xl md:text-5xl font-bold text-brand-gold mb-10 text-center">
@@ -115,39 +114,20 @@ export default async function EventPage({
 
       <EventClient media={media} slug={slug} />
 
-{/* MAPA WYDARZENIA */}
+      {/* MAPA WYDARZENIA */}
 
-<div className="mt-20">
+      {routePoints.length > 0 && (
+        <div className="mt-20">
 
-  <h2 className="text-2xl font-bold text-center mb-6">
-    Trasa wydarzenia
-  </h2>
+          <h2 className="text-2xl font-bold text-center mb-6">
+            Trasa wydarzenia
+          </h2>
 
-  <EventMap
-    points={[
-      {
-        lat: 49.426,
-        lng: 22.486,
-        title: "Start – Bieszczady",
-        image: "/media/2025/bieszczady/1.jpg"
-      },
-      {
-        lat: 49.512,
-        lng: 22.714,
-        title: "Przystanek widokowy",
-        image: "/media/2025/bieszczady/3.jpg"
-      },
-      {
-        lat: 49.365,
-        lng: 22.593,
-        title: "Meta wyprawy",
-        image: "/media/2025/bieszczady/5.jpg"
-      }
-    ]}
-  />
+          <EventMap points={routePoints} />
 
-</div>
+        </div>
+      )}
 
-</section>
-);
+    </section>
+  );
 }

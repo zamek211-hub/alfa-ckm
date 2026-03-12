@@ -14,15 +14,12 @@ export default function LightboxPro({
   index,
   onClose,
   onChange,
-  eventSlug,
 }: {
   items: MediaItem[];
   index: number;
   onClose: () => void;
   onChange: (i: number) => void;
 }) {
-
-  const slug = eventSlug ?? "event";
 
   /* ================= UI STATE ================= */
 

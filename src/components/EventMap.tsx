@@ -4,10 +4,10 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
 interface Point {
-  lat: number;
-  lng: number;
-  title: string;
-  image: string;
+  lat: number
+  lng: number
+  title: string
+  image: string
 }
 
 export default function EventMap({ points }: { points: Point[] }) {

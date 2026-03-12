@@ -16,10 +16,10 @@ export const event = {
 
   media: [
     {
-  type: "image",
-  src: "/media/2025/bieszczady/1.jpg",
-  thumb: "/media/2025/bieszczady/thumbs/1.jpg"
-}
+      type: "image",
+      src: "/media/2025/bieszczady/1.jpg",
+      thumb: "/media/2025/bieszczady/thumbs/1.jpg",
+    },
     {
       type: "image",
       src: "/media/2025/bieszczady/2.jpg",

@@ -1,5 +1,5 @@
 export interface MediaItem {
-  type: "image" | "mp4";
+  type: "image" | "mp4" | string;
   src: string;
   thumb?: string;
 }

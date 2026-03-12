@@ -105,19 +105,27 @@ export default async function EventPage({
         {event.title}
       </h1>
 
-      {/* GALERIA */}
-      <EventClient media={media} slug={slug} />
+{/* GALERIA */}
+<EventClient media={media} slug={slug} />
 
-      {/* MAPA WYDARZENIA */}
-      {routePoints.length > 0 && (
-        <div className="mt-20">
-          <h2 className="text-2xl font-bold text-center mb-6">
-            Trasa wydarzenia
-          </h2>
+{/* MAPA WYDARZENIA */}
+{routePoints.length > 0 && (
+  <div className="mt-20">
+    <h2 className="text-2xl font-bold text-center mb-6">
+      Trasa wydarzenia
+    </h2>
 
-          <EventMap points={routePoints} />
-        </div>
-      )}
-    </section>
-  );
+    <EventMap
+      points={routePoints.map((p, i) => ({
+        ...p,
+        title: `Punkt ${i + 1}`,
+        image: media[0]?.src || "",
+      }))}
+    />
+
+  </div>
+)}
+
+</section>
+);
 }

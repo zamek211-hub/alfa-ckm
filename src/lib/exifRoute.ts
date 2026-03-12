@@ -5,7 +5,8 @@ import exif from "exif-parser";
 export interface RoutePoint {
   lat: number;
   lng: number;
-  image: string;
+  title?: string;
+  image?: string;
 }
 
 export function extractRoute(folder: string): RoutePoint[] {

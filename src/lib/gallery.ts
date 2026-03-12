@@ -1,25 +1,15 @@
 import fs from "fs";
 import path from "path";
 
-export function loadGallery(dir: string) {
+export function loadGallery() {
 
-  const fullPath = path.join(process.cwd(), "public", dir);
+  const mediaDir = path.join(process.cwd(), "public/media");
 
-  if (!fs.existsSync(fullPath)) {
+  if (!fs.existsSync(mediaDir)) {
     return [];
   }
 
-  const files = fs.readdirSync(fullPath);
+  const files = fs.readdirSync(mediaDir);
 
-  const media = files
-    .filter((file) => /\.(jpg|jpeg|png|webp|mp4)$/i.test(file))
-    .filter((file) => file !== "cover.jpg")
-    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
-    .map((file) => ({
-      type: file.endsWith(".mp4") ? "mp4" : "image",
-      src: `/${dir}/${file}`,
-      thumb: `/${dir}/thumbs/${file}`,
-    }));
-
-  return media ?? [];
+  return files;
 }

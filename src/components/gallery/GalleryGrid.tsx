@@ -1,34 +1,55 @@
 "use client";
 
-import GalleryItem from "./GalleryItem";
-import { MediaItem } from "@/types/media";
+import { useState } from "react";
+import Image from "next/image";
+import Lightbox from "./Lightbox";
 
-export default function GalleryGrid({
-  media,
-  onOpen,
-}: {
-  media: MediaItem[];
-  onOpen: (i: number) => void;
-}) {
+type Props = {
+  images: string[];
+};
 
-  if (!media || media.length === 0) {
-    return (
-      <p className="text-center text-gray-400">
-        Brak zdjęć w galerii.
-      </p>
-    );
-  }
+export default function GalleryGrid({ images }: Props) {
+
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-      {media.map((item, i) => (
-        <GalleryItem
-          key={i}
-          item={item}
-          index={i}
-          onClick={() => onOpen(i)}
+    <>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+
+        {images.map((src, index) => (
+
+          <div key={index} className="relative w-full h-48">
+
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes="(max-width:768px) 50vw, 33vw"
+              loading="lazy"
+              className="object-cover rounded-lg cursor-pointer"
+              onClick={() => setActiveIndex(index)}
+            />
+
+          </div>
+
+        ))}
+
+      </div>
+
+      {activeIndex !== null && (
+        <Lightbox
+          images={images}
+          index={activeIndex}
+          onClose={() => setActiveIndex(null)}
+          onNext={() =>
+            setActiveIndex((activeIndex + 1) % images.length)
+          }
+          onPrev={() =>
+            setActiveIndex((activeIndex - 1 + images.length) % images.length)
+          }
+          onSelect={(i) => setActiveIndex(i)}
         />
-      ))}
-    </div>
+      )}
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+
   async redirects() {
     return [
       {
@@ -19,6 +20,10 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
+  },
+
+  images: {
+    formats: ["image/avif", "image/webp"],
   },
 
   //reactCompiler: true,

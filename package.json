@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "thumbs": "node scripts/generate-thumbs.js",
-    "images": "node scripts/generate-web-images.js"
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "thumbs": "node scripts/generate-thumbs.js",
+  "images": "node scripts/generate-web-images.js",
+  "gallery": "node scripts/optimize-images.js && node scripts/generate-gallery.js",
+  "publish-gallery": "npm run gallery && git add . && git commit -m \"update gallery\" && git push"
   },
+
   "dependencies": {
     "exif-parser": "^0.1.12",
     "framer-motion": "^12.35.2",

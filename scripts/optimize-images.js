@@ -26,13 +26,15 @@ async function processFolder(folderPath) {
 
   for (const file of files) {
 
-    if (
-      file === "cover.jpg" ||
-      file === "thumbs" ||
-      file === "web" ||
-      file === "original" ||
-      file.match(/^\d+\.jpg$/)
-    ) continue;
+    const lower = file.toLowerCase();
+
+if (
+  lower.startsWith("cover") ||
+  lower === "thumbs" ||
+  lower === "web" ||
+  lower === "original" ||
+  file.match(/^\d+\.jpg$/)
+) continue;
 
     const input = path.join(folderPath, file);
 

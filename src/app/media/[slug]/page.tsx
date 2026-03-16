@@ -1,10 +1,14 @@
 import { gallery } from "@/data/gallery";
 import GalleryGrid from "@/components/gallery/GalleryGrid";
 
+type Params = {
+  slug: string;
+};
+
 export default async function EventPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<Params>;
 }) {
 
   const { slug } = await params;

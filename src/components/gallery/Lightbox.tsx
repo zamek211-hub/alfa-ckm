@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRef, useEffect } from "react";
 
 type Props = {
   images: string[];
@@ -21,59 +22,83 @@ export default function Lightbox({
 }: Props) {
 
   const src = images[index];
-  const nextImage = images[(index + 1) % images.length];
+  const touchStartX = useRef(0);
+
+  // blokada scrolla strony pod galerią
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   return (
-    <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
+    <div
+      className="fixed inset-0 bg-black/90 flex items-center justify-center z-50"
+
+      onTouchStart={(e) => {
+        touchStartX.current = e.touches[0].clientX;
+      }}
+
+      onTouchEnd={(e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX.current - touchEndX;
+
+        if (diff > 50) onNext();
+        if (diff < -50) onPrev();
+      }}
+    >
 
       {/* zamknij */}
 
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 text-yellow-500 text-4xl"
+        className="absolute top-6 right-6 text-yellow-500 text-4xl z-50"
       >
         ✕
       </button>
 
       {/* licznik */}
 
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 text-yellow-500 text-xl">
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 text-yellow-500 text-xl z-50">
         {index + 1} / {images.length}
       </div>
 
-      {/* strzałki */}
+      {/* strzałki (desktop) */}
 
       <button
         onClick={onPrev}
-        className="absolute left-6 text-yellow-500 text-7xl"
+        className="hidden md:block absolute left-6 text-yellow-500 text-7xl"
       >
         ‹
       </button>
 
       <button
         onClick={onNext}
-        className="absolute right-6 text-yellow-500 text-7xl"
+        className="hidden md:block absolute right-6 text-yellow-500 text-7xl"
       >
         ›
       </button>
 
       {/* zdjęcie */}
 
-      <div className="relative w-[90vw] h-[80vh]">
+      <div className="relative w-[95vw] h-[80vh]">
 
         <Image
           src={src}
-          alt=""
+          alt={`Zdjęcie ${index + 1}`}
           fill
-          sizes="100vw"
+          sizes="(max-width:768px) 100vw, (max-width:1200px) 80vw, 60vw"
+          quality={85}
           className="object-contain"
+          priority
         />
 
       </div>
 
-      {/* miniatury */}
+      {/* miniatury (tylko desktop) */}
 
-      <div className="absolute bottom-6 flex gap-2 overflow-x-auto max-w-[90vw]">
+      <div className="hidden md:flex absolute bottom-6 gap-2 overflow-x-auto max-w-[90vw]">
 
         {images.map((img, i) => (
 
@@ -81,7 +106,7 @@ export default function Lightbox({
             key={i}
             src={img}
             onClick={() => onSelect(i)}
-            className={`h-16 w-24 object-cover cursor-pointer rounded 
+            className={`h-16 w-24 object-cover cursor-pointer rounded
             ${i === index ? "ring-2 ring-yellow-500" : "opacity-60"}`}
           />
 

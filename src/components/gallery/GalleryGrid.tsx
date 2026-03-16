@@ -21,14 +21,15 @@ export default function GalleryGrid({ images }: Props) {
           <div key={index} className="relative w-full h-48">
 
             <Image
-              src={src}
-              alt=""
-              fill
-              sizes="(max-width:768px) 50vw, 33vw"
-              loading="lazy"
-              className="object-cover rounded-lg cursor-pointer"
-              onClick={() => setActiveIndex(index)}
-            />
+  src={src}
+  alt="Zdjęcie z wydarzenia ALFA-CKM"
+  fill
+  sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+  loading="lazy"
+  quality={80}
+  className="object-cover rounded-lg cursor-pointer"
+  onClick={() => setActiveIndex(index)}
+/>
 
           </div>
 

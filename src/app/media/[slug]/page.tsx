@@ -4,10 +4,10 @@ import GalleryGrid from "@/components/gallery/GalleryGrid";
 export default async function EventPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
 
-  const { slug } = params;
+  const { slug } = await params;
 
   const event = gallery.find((e) => e.slug === slug);
 
